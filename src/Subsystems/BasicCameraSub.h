@@ -1,6 +1,7 @@
 #pragma once
 
 #include "WPILib.h"
+#include "cscore.h"
 
 class BasicCameraSub : public Subsystem {
 public:
@@ -18,8 +19,8 @@ public:
 private:
   bool m_enabled;
   bool m_initialized;
-  Image *m_image;
-  USBCamera m_camera;
+  cs::UsbCamera m_camera;
+  llvm::StringRef m_cameraStringRef;
 
   void _InitializeCamera();
   void _UninitializeCamera();

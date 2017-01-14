@@ -1,7 +1,8 @@
 #include "Feed.h"
 #include "../Robot.h"
 
-Feed::Feed(double Timeout) {
+Feed::Feed(double Timeout)
+: Timeout(Timeout), seenBall(false){
   SetTimeout(Timeout);
   Requires(Robot::shooter);
 }
