@@ -1,9 +1,9 @@
-#ifndef SHOOTER_H
-#define SHOOTER_H
+#pragma once
 
 #include "Commands/Subsystem.h"
 #include "Timer.h"
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class Shooter : public Subsystem {
 private:
@@ -28,4 +28,4 @@ public:
   double getVelocity();
 };
 
-#endif
+

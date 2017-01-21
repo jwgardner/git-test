@@ -1,5 +1,4 @@
-#ifndef ARM_H
-#define ARM_H
+#pragma once
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
@@ -24,4 +23,4 @@ public:
   void disablePositionControl();
 };
 
-#endif
+

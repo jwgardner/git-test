@@ -16,7 +16,7 @@ void BasicCameraSendCmd::Initialize() {}
 // ==========================================================================
 // Called repeatedly when this Command is scheduled to run
 
-void BasicCameraSendCmd::Execute() { m_camera->SendImage(); }
+void BasicCameraSendCmd::Execute() {}
 
 // ==========================================================================
 // Make this return true when this Command no longer needs to run Execute.

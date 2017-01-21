@@ -1,5 +1,4 @@
-#ifndef _ROBOT_H
-#define _ROBOT_H
+#pragma once
 
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Command.h"
@@ -14,7 +13,8 @@
 #include "Subsystems/VisionBridgeSub.h"
 #include "Subsystems/WinchSub.h"
 #include "WPILib.h"
-
+class DriveTrain;
+class GyroSub;
 class Robot : public IterativeRobot {
 public:
   Command *autonomousCommand;
@@ -39,4 +39,4 @@ public:
   void ScriptInit();
   // void cameraInit();
 };
-#endif
+

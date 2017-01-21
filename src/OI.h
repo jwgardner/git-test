@@ -1,5 +1,4 @@
-#ifndef OI_H
-#define OI_H
+#pragma once
 
 #include "WPILib.h"
 
@@ -35,4 +34,3 @@ public:
   Joystick *GetDriverJoystick() { return driverJoystick; }
 };
 
-#endif

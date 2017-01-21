@@ -5,8 +5,7 @@
 // ==========================================================================
 // 2015-02-01 JKSalmon - Initial development
 // ==========================================================================
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <mutex>
 #include <string>
@@ -24,4 +23,4 @@ private:
 
 #define LOG(msg) Logger::Log(msg);
 
-#endif
+

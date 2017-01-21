@@ -1,8 +1,8 @@
-#ifndef WinchSub_H
-#define WinchSub_H
+#pragma once
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class WinchSub : public Subsystem {
 private:
@@ -23,4 +23,4 @@ public:
   void stopClimb();
 };
 
-#endif
+

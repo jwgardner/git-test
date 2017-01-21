@@ -5,8 +5,7 @@
 // ==========================================================================
 // 2015-02-01 JKSalmon - Initial development
 // ==========================================================================
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#pragma once
 
 class Constants {
 public:
@@ -25,4 +24,4 @@ public:
   static const double ARM_POSITION_DEFAULT;
 };
 
-#endif
+

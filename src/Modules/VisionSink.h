@@ -9,7 +9,7 @@ public:
   virtual ~VisionSink();
 
   // PIDOutput methods
-  void PIDWrite(float output);
+  void PIDWrite(double output);
 
   double GetValue();
 

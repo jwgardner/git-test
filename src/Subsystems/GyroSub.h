@@ -1,5 +1,4 @@
-#ifndef GYROSUB_H
-#define GYROSUB_H
+#pragma once
 
 #include "../RobotMap.h"
 #include "Commands/Subsystem.h"
@@ -41,4 +40,4 @@ private:
 #endif
 };
 
-#endif
+

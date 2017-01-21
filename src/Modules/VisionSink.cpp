@@ -1,10 +1,10 @@
-#include "Modules/VisionSink.h"
+#include "VisionSink.h"
 
 VisionSink::VisionSink() : _mutex(), _value(0) {}
 
 VisionSink::~VisionSink() {}
 
-void VisionSink::PIDWrite(float output) {
+void VisionSink::PIDWrite(double output) {
   std::unique_lock<std::recursive_mutex> lock(_mutex);
   _value = output;
 }

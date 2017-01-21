@@ -2,6 +2,7 @@
 #define RunMotor_H
 
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class RunMotor : public Command {
 public:

@@ -1,5 +1,4 @@
-#ifndef VISIONBRIDGESUB_H
-#define VISIONBRIDGESUB_H
+#pragma once
 
 #include <mutex>
 #include <thread>
@@ -48,4 +47,3 @@ private:
   void SetDistance(double distance);
 };
 
-#endif
