@@ -25,7 +25,8 @@ public:
   Command *winchSet3;
   Command *deFeed;
   // Command* arcade;
-  // Command* climb;
+  Command* climb;
+  Command* climbReverse;
   Command *gyroCrab;
   Command *shootCycle;
   Command *fieldCentric;

@@ -66,4 +66,9 @@ void WinchSub::climb() {
   motor->Set(1);
 }
 
+void WinchSub::climbReverse() {
+  motor->SetControlMode(CANSpeedController::kPercentVbus);
+  motor->Set(-1);
+}
+
 void WinchSub::stopClimb() { motor->Set(0); }

@@ -5,9 +5,9 @@
 #include "Commands/ArmDown.h"
 #include "Commands/ArmUp.h"
 #include "Commands/AutonomousCommand.h"
-#include "Commands/BasicCameraDisableCmd.h"
 #include "Commands/BasicCameraEnableCmd.h"
 #include "Commands/Climb.h"
+#include "Commands/ClimbReverse.h"
 #include "Commands/DeFeed.h"
 #include "Commands/FieldCentric.h"
 #include "Commands/GyroCrab.h"
@@ -62,20 +62,23 @@ OI::OI() {
   shootCycle = new ShootCycle(0);
   lowShot = new LowShot();
   // arcade = new ArcadeDriveMode();
-  // climb = new Climb();
+  climb = new Climb();
+  climbReverse = new ClimbReverse();
 
   auto cameraEnableCmd = new BasicCameraEnableCmd(Robot::basicCameraSub);
-  auto cameraDisableCmd = new BasicCameraDisableCmd(Robot::basicCameraSub);
 
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_Y))->WhileHeld(armDown);
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_X))->WhileHeld(stowArm);
 
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_B))->WhileHeld(lowShot);
+  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_B))->WhileHeld(climbReverse);//->WhileHeld(lowShot);
 
+/*
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_BACK))
       ->WhenPressed(winchSet2);
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))
       ->WhenPressed(winchSet3);
+*/
+  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))->WhenPressed(cameraEnableCmd);
 
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RB))
       ->WhileHeld(unwindWheels);
@@ -85,14 +88,14 @@ OI::OI() {
 
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LB))->WhenPressed(deFeed);
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_A))
-      ->WhileHeld(shootCycle);
+		->WhileHeld(climb);
+      //->WhileHeld(shootCycle);
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RIGHT))
       ->WhileHeld(gyroCrab);
   (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LEFT))
       ->WhileHeld(fieldCentric);
 
   SmartDashboard::PutData("Camera On", cameraEnableCmd);
-  SmartDashboard::PutData("Camera Off", cameraDisableCmd);
 
   // SmartDashboard::PutData("Camera", useCamera);
   SmartDashboard::PutData("SetWheelOffsets", new SetWheelOffsets());

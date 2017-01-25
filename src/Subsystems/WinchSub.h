@@ -20,6 +20,7 @@ public:
   void disablePositionControl();
   void reset();
   void climb();
+  void climbReverse();
   void stopClimb();
 };
 
