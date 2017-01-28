@@ -1,18 +1,18 @@
-#ifndef ARMUP_H
-#define ARMUP_H
+#pragma once
 
-#include "../Robot.h"
-#include "Commands/Subsystem.h"
+#include <Commands/Command.h>
 
-class ArmUp : public Command {
+// ==========================================================================
+
+class ArmUp : public frc::Command {
 public:
-  ArmUp();
-  virtual void Initialize();
-  virtual void Execute();
-  virtual bool IsFinished();
-  virtual void End();
-  virtual void Interrupted();
+	ArmUp();
 
-private:
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
 };
-#endif
+
+// ==========================================================================

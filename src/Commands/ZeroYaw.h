@@ -1,16 +1,18 @@
-#ifndef ZeroYaw_H
-#define ZeroYaw_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ZeroYaw : public Command {
+// ==========================================================================
+
+class ZeroYaw : public frc::Command {
 public:
-  ZeroYaw();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ZeroYaw();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

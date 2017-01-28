@@ -1,16 +1,21 @@
-#ifndef SetWheelsTwist_H
-#define SetWheelsTwist_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class SetWheelsTwist : public Command {
+// ==========================================================================
+
+class SetWheelsTwist : public frc::Command {
 public:
-  SetWheelsTwist(double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	SetWheelsTwist(double seconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	double _seconds;
 };
 
-#endif
+// ==========================================================================

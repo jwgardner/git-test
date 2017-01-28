@@ -1,20 +1,18 @@
-#ifndef SCRIPTSLEEP_H
-#define SCRIPTSLEEP_H
+#pragma once
 
-#include "WPILib.h"
 #include <Commands/Command.h>
+#include <string>
 
-class ScriptSleep : public Command {
+class ScriptSleep : public frc::Command {
 public:
-  ScriptSleep(const char *name, float seconds);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ScriptSleep(std::string name, float seconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 
 private:
-  float _seconds;
+	float _seconds;
 };
-
-#endif

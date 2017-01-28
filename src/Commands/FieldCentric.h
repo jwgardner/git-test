@@ -1,18 +1,18 @@
-#ifndef FIELDCENTRIC_H
-#define FIELDCENTRIC_H
+#pragma once
 
 #include <Commands/Command.h>
 
-class FieldCentric : public Command {
-public:
-  FieldCentric();
-  virtual void Initialize();
-  virtual void Execute();
-  virtual bool IsFinished();
-  virtual void End();
-  virtual void Interrupted();
+// ==========================================================================
 
-private:
+class FieldCentric : public frc::Command {
+public:
+	FieldCentric();
+
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
 };
 
-#endif
+// ==========================================================================

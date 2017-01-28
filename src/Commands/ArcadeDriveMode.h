@@ -1,16 +1,18 @@
-#ifndef ArcadeDriveMode_H
-#define ArcadeDriveMode_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ArcadeDriveMode : public Command {
+// ==========================================================================
+
+class ArcadeDriveMode : public frc::Command {
 public:
-  ArcadeDriveMode();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ArcadeDriveMode();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

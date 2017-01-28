@@ -23,7 +23,9 @@ void ScriptDrive::Initialize() {
 
 // ==========================================================================
 
-void ScriptDrive::Execute() { Robot::driveTrain->Crab(_z, _x, _y, false); }
+void ScriptDrive::Execute() {
+	Robot::driveTrain->Crab(_z, _x, _y, false);
+}
 
 // ==========================================================================
 

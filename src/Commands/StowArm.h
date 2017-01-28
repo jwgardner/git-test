@@ -1,16 +1,18 @@
-#ifndef StowArm_H
-#define StowArm_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class StowArm : public Command {
+// ==========================================================================
+
+class StowArm : public frc::Command {
 public:
-  StowArm();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	StowArm();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

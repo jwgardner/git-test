@@ -1,23 +1,39 @@
-#include "SetWheelsTwist.h"
-#include "../Robot.h"
+#include "Commands/SetWheelsTwist.h"
+#include "Robot.h"
 
-SetWheelsTwist::SetWheelsTwist(double timeout) {
-  Requires(Robot::driveTrain);
-  SetTimeout(timeout);
+// ==========================================================================
+
+SetWheelsTwist::SetWheelsTwist(double seconds)
+: _seconds(seconds) {
+	Requires(Robot::driveTrain);
 }
 
-// Called just before this Command runs the first time
-void SetWheelsTwist::Initialize() { Robot::driveTrain->PositionModeTwist(0); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
-void SetWheelsTwist::Execute() {}
+void SetWheelsTwist::Initialize() {
+	SetTimeout(_seconds);
+	Robot::driveTrain->PositionModeTwist(0);
+}
 
-// Make this return true when this Command no longer needs to run execute()
-bool SetWheelsTwist::IsFinished() { return IsTimedOut(); }
+// ==========================================================================
 
-// Called once after isFinished returns true
-void SetWheelsTwist::End() {}
+void SetWheelsTwist::Execute() {
+}
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void SetWheelsTwist::Interrupted() {}
+// ==========================================================================
+
+bool SetWheelsTwist::IsFinished() {
+	return IsTimedOut();
+}
+
+// ==========================================================================
+
+void SetWheelsTwist::End() {
+}
+
+// ==========================================================================
+
+void SetWheelsTwist::Interrupted() {
+}
+
+// ==========================================================================

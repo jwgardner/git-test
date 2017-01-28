@@ -1,31 +1,46 @@
-#include "FieldCentric.h"
+#include "Commands/FieldCentric.h"
+#include "Modules/Logger.h"
 #include "Robot.h"
 
-FieldCentric::FieldCentric() : Command("Field Centric") {
-  std::cout << "FieldCentric::FieldCentric" << std::endl;
+// ==========================================================================
 
-  Requires(Robot::driveTrain);
+FieldCentric::FieldCentric()
+: frc::Command("FieldCentric") {
+	LOG(GetName() + "::ctor");
+
+	Requires(Robot::driveTrain);
 }
 
-// Called just before this Command runs the first time
-void FieldCentric::Initialize() { Robot::driveTrain->CrabInit(); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
+void FieldCentric::Initialize() {
+	Robot::driveTrain->CrabInit();
+}
+
+// ==========================================================================
+
 void FieldCentric::Execute() {
-  float x = Robot::oi->GetJoystickX();
-  float y = Robot::oi->GetJoystickY();
-  float z = Robot::oi->GetJoystickZ();
-  // std::cout << "X " << x << ", Y " << y << ", Z " << z << std::endl;
-  Robot::driveTrain->FieldCentricCrab(z, -y, x, true);
-  // Robot::driveTrain->GyroCrab(0, -y, x, true);
-  // Robot::driveTrain->FieldCentricCrab(z,-y,x, true);
+	auto x = Robot::oi->GetJoystickX();
+	auto y = Robot::oi->GetJoystickY();
+	auto z = Robot::oi->GetJoystickZ();
+	Robot::driveTrain->FieldCentricCrab(z, -y, x, true);
 }
 
-// Make this return true when this Command no longer needs to run Execute.
-bool FieldCentric::IsFinished() { return false; }
+// ==========================================================================
 
-// Called once after isFinished returns true
-void FieldCentric::End() {}
+bool FieldCentric::IsFinished() {
+	return false;
+}
 
-// Called when another command which requires this subsystem is scheduled to run
-void FieldCentric::Interrupted() { End(); }
+// ==========================================================================
+
+void FieldCentric::End() {
+}
+
+// ==========================================================================
+
+void FieldCentric::Interrupted() {
+	End();
+}
+
+// ==========================================================================

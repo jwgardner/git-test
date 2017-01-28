@@ -1,16 +1,18 @@
-#ifndef ResetArm_H
-#define ResetArm_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ResetArm : public Command {
+// ==========================================================================
+
+class ResetArm : public frc::Command {
 public:
-  ResetArm();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ResetArm();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

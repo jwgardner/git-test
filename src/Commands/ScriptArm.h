@@ -1,19 +1,21 @@
-#ifndef ScriptArm_H
-#define ScriptArm_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ScriptArm : public Command {
-private:
-  int pos;
+// ==========================================================================
 
+class ScriptArm : public frc::Command {
 public:
-  ScriptArm(int pos);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ScriptArm(int pos);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	int _pos;
 };
 
-#endif
+// ==========================================================================

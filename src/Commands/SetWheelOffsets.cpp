@@ -1,23 +1,38 @@
-#include "../Robot.h"
-#include <Commands/SetWheelOffsets.h>
+#include "Commands/SetWheelOffsets.h"
+#include "Robot.h"
+
+// ==========================================================================
 
 SetWheelOffsets::SetWheelOffsets() {
-  SetRunWhenDisabled(true);
-  SetTimeout(1);
+	SetRunWhenDisabled(true);
 }
 
-// Called just before this Command runs the first time
-void SetWheelOffsets::Initialize() { Robot::driveTrain->setWheelOffsets(); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
-void SetWheelOffsets::Execute() {}
+void SetWheelOffsets::Initialize() {
+	SetTimeout(1);
+	Robot::driveTrain->setWheelOffsets();
+}
 
-// Make this return true when this Command no longer needs to run execute()
-bool SetWheelOffsets::IsFinished() { return IsTimedOut(); }
+// ==========================================================================
 
-// Called once after isFinished returns true
-void SetWheelOffsets::End() {}
+void SetWheelOffsets::Execute() {
+}
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void SetWheelOffsets::Interrupted() {}
+// ==========================================================================
+
+bool SetWheelOffsets::IsFinished() {
+	return IsTimedOut();
+}
+
+// ==========================================================================
+
+void SetWheelOffsets::End() {
+}
+
+// ==========================================================================
+
+void SetWheelOffsets::Interrupted() {
+}
+
+// ==========================================================================

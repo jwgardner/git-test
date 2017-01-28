@@ -1,23 +1,25 @@
-#ifndef SCRIPTGYRODRIVE_H
-#define SCRIPTGYRODRIVE_H
+#pragma once
 
-#include "WPILib.h"
 #include <Commands/Command.h>
+#include <string>
 
-class ScriptGyroDrive : public Command {
+// ==========================================================================
+
+class ScriptGyroDrive : public frc::Command {
 public:
-  ScriptGyroDrive(const char *name, float x, float y, float z, float seconds);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ScriptGyroDrive(std::string name, float x, float y, float z, float seconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 
 private:
-  float _x;
-  float _y;
-  float _z;
-  float _seconds;
+	float _x;
+	float _y;
+	float _z;
+	float _seconds;
 };
 
-#endif
+// ==========================================================================

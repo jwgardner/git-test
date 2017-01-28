@@ -1,23 +1,24 @@
-#ifndef DriveDistance_H
-#define DriveDistance_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class DriveDistance : public Command {
+// ==========================================================================
+
+class DriveDistance : public frc::Command {
 public:
-  DriveDistance(float speed, float driveangle, float twistangle,
-                float distance);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	DriveDistance(float driveAngle, float speed, float twistAngle, float distance);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 
 private:
-  float X;
-  float Y;
-  float TwistAngle;
-  float Distance;
+	float _driveAngle;
+	float _speed;
+	float _twistAngle;
+	float _distance;
 };
 
-#endif
+// ==========================================================================

@@ -1,18 +1,22 @@
-#ifndef RunMotor_H
-#define RunMotor_H
+#pragma once
 
-#include "WPILib.h"
-#include "CANTalon.h"
+#include <Commands/Command.h>
+#include <CANTalon.h>
 
-class RunMotor : public Command {
+// ==========================================================================
+
+class RunMotor : public frc::Command {
 public:
-  CANTalon *motor;
-  RunMotor(CANTalon *motor);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	RunMotor(CANTalon* motor);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	CANTalon* _motor;
 };
 
-#endif
+// ==========================================================================

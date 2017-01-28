@@ -1,16 +1,18 @@
-#ifndef UpdatePositions_H
-#define UpdatePositions_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class UpdatePositions : public Command {
+// ==========================================================================
+
+class UpdatePositions : public frc::Command {
 public:
-  UpdatePositions();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	UpdatePositions();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

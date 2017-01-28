@@ -1,19 +1,38 @@
-#include "RunMotor.h"
+#include "Commands/RunMotor.h"
 
-RunMotor::RunMotor(CANTalon *motor) {}
+// ==========================================================================
 
-// Called just before this Command runs the first time
-void RunMotor::Initialize() { RunMotor::motor = motor; }
+RunMotor::RunMotor(CANTalon *motor)
+: _motor(motor) {
+}
 
-// Called repeatedly when this Command is scheduled to run
-void RunMotor::Execute() { motor->Set(1); }
+// ==========================================================================
 
-// Make this return true when this Command no longer needs to run execute()
-bool RunMotor::IsFinished() { return false; }
+void RunMotor::Initialize() {
+}
 
-// Called once after isFinished returns true
-void RunMotor::End() { motor->Set(0); }
+// ==========================================================================
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void RunMotor::Interrupted() { motor->Set(0); }
+void RunMotor::Execute() {
+	_motor->Set(1);
+}
+
+// ==========================================================================
+
+bool RunMotor::IsFinished() {
+	return false;
+}
+
+// ==========================================================================
+
+void RunMotor::End() {
+	_motor->Set(0);
+}
+
+// ==========================================================================
+
+void RunMotor::Interrupted() {
+	End();
+}
+
+// ==========================================================================

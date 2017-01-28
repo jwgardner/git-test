@@ -1,19 +1,18 @@
-#ifndef UnwindWheels_H
-#define UnwindWheels_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class UnwindWheels : public Command {
+// ==========================================================================
+
+class UnwindWheels : public frc::Command {
 public:
-  UnwindWheels();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	UnwindWheels();
 
-private:
-  bool doneUnwinding;
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

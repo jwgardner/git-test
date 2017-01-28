@@ -1,24 +1,38 @@
-#include "ResetArm.h"
-#include "../Robot.h"
+#include "Commands/ResetArm.h"
+#include "Robot.h"
+
+// ==========================================================================
 
 ResetArm::ResetArm() {
-  // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(chassis);
-  SetRunWhenDisabled(true);
+	Requires(Robot::armSub);
+	SetRunWhenDisabled(true);
 }
 
-// Called just before this Command runs the first time
-void ResetArm::Initialize() { Robot::armSub->reset(); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
-void ResetArm::Execute() {}
+void ResetArm::Initialize() {
+	Robot::armSub->reset();
+}
 
-// Make this return true when this Command no longer needs to run execute()
-bool ResetArm::IsFinished() { return true; }
+// ==========================================================================
 
-// Called once after isFinished returns true
-void ResetArm::End() {}
+void ResetArm::Execute() {
+}
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void ResetArm::Interrupted() {}
+// ==========================================================================
+
+bool ResetArm::IsFinished() {
+	return true;
+}
+
+// ==========================================================================
+
+void ResetArm::End() {
+}
+
+// ==========================================================================
+
+void ResetArm::Interrupted() {
+}
+
+// ==========================================================================

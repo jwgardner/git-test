@@ -1,32 +1,41 @@
-#include "DriveDistance.h"
+#include "Commands/DriveDistance.h"
 #include "Robot.h"
 
-DriveDistance::DriveDistance(float driveangle, float speed, float twistangle,
-                             float distance) {
-  Requires(Robot::driveTrain);
+// ==========================================================================
 
-  X = driveangle;
-  Y = speed;
-  TwistAngle = twistangle;
-  Distance = distance; //*46.5;
+DriveDistance::DriveDistance(float driveAngle, float speed, float twistAngle, float distance)
+: _driveAngle(driveAngle), _speed(speed), _twistAngle(twistAngle), _distance(distance) {
+	Requires(Robot::driveTrain);
 }
 
-// Called just before this Command runs the first time
-void DriveDistance::Initialize() { Robot::driveTrain->zeroDistanceEncoders(); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
+void DriveDistance::Initialize() {
+	Robot::driveTrain->zeroDistanceEncoders();
+}
+
+// ==========================================================================
+
 void DriveDistance::Execute() {
-  Robot::driveTrain->Crab(TwistAngle, X, Y, false);
+	Robot::driveTrain->Crab(_twistAngle, _driveAngle, _speed, false);
 }
 
-// Make this return true when this Command no longer needs to run execute()
+// ==========================================================================
+
 bool DriveDistance::IsFinished() {
-  return Robot::driveTrain->getDistanceEncodersValues() >= Distance;
+	return Robot::driveTrain->getDistanceEncodersValues() >= _distance;
 }
 
-// Called once after isFinished returns true
-void DriveDistance::End() { Robot::driveTrain->Crab(0, 0, 0, false); }
+// ==========================================================================
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void DriveDistance::Interrupted() { Robot::driveTrain->Crab(0, 0, 0, false); }
+void DriveDistance::End() {
+	Robot::driveTrain->Crab(0, 0, 0, false);
+}
+
+// ==========================================================================
+
+void DriveDistance::Interrupted() {
+	Robot::driveTrain->Crab(0, 0, 0, false);
+}
+
+// ==========================================================================

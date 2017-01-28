@@ -15,7 +15,6 @@
 #include "Commands/PositionDrive.h"
 #include "Commands/ResetArm.h"
 #include "Commands/ResetWinch.h"
-#include "Commands/RunMotor.h"
 #include "Commands/ScriptCamDrive.h"
 #include "Commands/ScriptValidate.h"
 #include "Commands/SetWheelOffsets.h"
@@ -26,6 +25,7 @@
 #include "Commands/UnwindWheels.h"
 #include "Commands/UpdatePositions.h"
 #include "Commands/ZeroYaw.h"
+#include "Robot.h"
 
 const uint32_t JOYSTICK_LX_AXIS = 0;
 const uint32_t JOYSTICK_LY_AXIS = 1;

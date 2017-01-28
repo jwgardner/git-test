@@ -1,16 +1,18 @@
-#ifndef SetWheelOffsets_H
-#define SetWheelOffsets_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class SetWheelOffsets : public Command {
+// ==========================================================================
+
+class SetWheelOffsets : public frc::Command {
 public:
-  SetWheelOffsets();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	SetWheelOffsets();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

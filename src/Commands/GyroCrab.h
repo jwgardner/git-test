@@ -1,19 +1,24 @@
-#ifndef GYROCRAB_H
-#define GYROCRAB_H
+#pragma once
 
 #include <Commands/Command.h>
 
+// ==========================================================================
+// This command keeps the robot square to the edge of the field to which it
+// is most square when the command is started.
+// ==========================================================================
+
 class GyroCrab : public Command {
 public:
-  GyroCrab();
-  virtual void Initialize();
-  virtual void Execute();
-  virtual bool IsFinished();
-  virtual void End();
-  virtual void Interrupted();
+	GyroCrab();
+
+	virtual void Initialize();
+	virtual void Execute();
+	virtual bool IsFinished();
+	virtual void End();
+	virtual void Interrupted();
 
 private:
-  float angle;
+	float _angle;
 };
 
-#endif
+// ==========================================================================
