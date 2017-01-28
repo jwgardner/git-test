@@ -1,17 +1,26 @@
+// ==========================================================================
+// GyroSub class
+// The GyroSub subsystem represents the NavX accelerometer.
+//
+// FRC 4143: MARS/WARS
+// ==========================================================================
 #include "GyroSub.h"
-#include "../RobotMap.h"
-#include "../Modules/Logger.h"
+#include "RobotMap.h"
+#include "Modules/Logger.h"
 
 // ==========================================================================
 
-GyroSub::GyroSub() : Subsystem("GyroSub") { LOG("GyroSub::GyroSub"); }
+GyroSub::GyroSub()
+: Subsystem("GyroSub") {
+	LOG("GyroSub::GyroSub");
+}
 
 // ==========================================================================
 
 void GyroSub::InitDefaultCommand() {
-  LOG("GyroSub::InitDefaultCommand");
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MyCommand());
+	LOG("GyroSub::InitDefaultCommand");
+	// Set the default command for a subsystem here.
+	// SetDefaultCommand(new MyCommand());
 }
 
 // ==========================================================================
@@ -34,19 +43,22 @@ bool GyroSub::IsCalibrating() { return theGyro()->IsCalibrating(); }
 // ==========================================================================
 
 void GyroSub::ResetGyro() {
-  theGyro()->ZeroYaw();
-#ifdef USE_NAVX
-  theGyro()->ResetDisplacement();
-#endif
+	theGyro()->ZeroYaw();
+	theGyro()->ResetDisplacement();
 }
 
 // ==========================================================================
-#ifdef USE_NAVX
+
 float GyroSub::GetDisplacementX() { return theGyro()->GetDisplacementX(); }
-#endif
+
 // ==========================================================================
-#ifdef USE_NAVX
+
 float GyroSub::GetDisplacementY() { return theGyro()->GetDisplacementY(); }
-#endif
+
+// ==========================================================================
+
+AHRS* GyroSub::theGyro() {
+	return RobotMap::imu;
+}
 
 // ==========================================================================

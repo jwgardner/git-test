@@ -1,35 +1,45 @@
 // ==========================================================================
 // Logger class
 //
-// FRC 4143 "MARS WARS"
+// FRC 4143: MARS/WARS
 // ==========================================================================
 // 2015-02-01 JKSalmon - Initial development
+// 2017-01-28 JKSalmon - Minor code and performance improvements
 // ==========================================================================
 #include "Logger.h"
 #include <WPILib.h>
 #include <time.h>
 
+// ==========================================================================
+
 std::mutex Logger::m_mutex;
 int Logger::m_counter = 0;
 
-Logger::Logger() {}
+// ==========================================================================
+
+Logger::Logger() {
+}
+
+// ==========================================================================
 
 void Logger::Log(std::string msg) {
-  // DriverStation::ReportError(msg.append("\r\n"));
-  std::lock_guard<std::mutex> lck(m_mutex);
+	// DriverStation::ReportError(msg.append("\r\n"));
+	std::lock_guard<std::mutex> lck(m_mutex);
 
-  time_t rawtime;
-  time(&rawtime);
+	time_t rawtime = time(nullptr);
+	tm localTime = *localtime(&rawtime);
 
-  tm *timeinfo = localtime(&rawtime);
+	char szTimestamp[64];
+	strftime(szTimestamp, 64, "%Y-%m-%d %H:%M:%S", &localTime);
 
-  char buffer[64];
-  strftime(buffer, 64, "%Y-%m-%d %H:%M:%S", timeinfo);
+	int counter = ++m_counter;
+	char szPrefix[64];
+	sprintf(szPrefix, "%s %i ", szTimestamp, counter);
 
-  int counter = ++m_counter;
-  char buffer2[64];
-  sprintf(buffer2, "%s %i ", buffer, counter);
+	msg = szPrefix + msg;
 
-  std::cout << buffer2 << msg << std::endl;
-  std::cout.flush();
+	std::cout << msg << std::endl;
+	std::cout.flush();
 }
+
+// ==========================================================================

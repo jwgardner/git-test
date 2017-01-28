@@ -1,52 +1,53 @@
-#include "ScriptCommand.h"
-#include "../Modules/CommandListParser.h"
-#include "WPILib.h"
-#include "iostream"
+#include <WPILib.h>
+#include <iostream>
+
+#include "Commands/ScriptCommand.h"
+#include "Modules/CommandListParser.h"
 
 // ==========================================================================
 
 ScriptCommand::ScriptCommand(const char *name)
-    : ScriptCommand(name, SmartDashboard::GetString("ScriptCommand", "")) {}
+: ScriptCommand(name, SmartDashboard::GetString("ScriptCommand", "")) {
+}
 
 // ==========================================================================
 
-ScriptCommand::ScriptCommand(const char *name, std::string commands)
-    : CommandGroup(name) {
-  std::cout << "ScriptCommand:" << name << std::endl;
-  ParseCommands(commands);
+ScriptCommand::ScriptCommand(const char *name, std::string script)
+: CommandGroup(name) {
+	std::cout << "ScriptCommand:" << name << std::endl;
+	ParseCommands(script);
 }
 
 // ==========================================================================
 
 void ScriptCommand::InitParameters() {
-  try {
-    SmartDashboard::GetString("ScriptCommand", "");
-  } catch (...) {
-    // SmartDashboard parameter does not exist; create it.
-    SmartDashboard::PutString("ScriptCommand", "S(1)");
-  }
+	try {
+		SmartDashboard::GetString("ScriptCommand", "");
+	} catch (...) {
+		// SmartDashboard parameter does not exist; create it.
+		SmartDashboard::PutString("ScriptCommand", "S(1)");
+	}
 }
 
 // ==========================================================================
 
-void ScriptCommand::ParseCommands(std::string commands) {
-  CommandListParser &parser(CommandListParser::GetInstance());
-
-  parser.Parse(commands, [this](bool p, Command *c, float t) {
-    if (p) {
-      if (t) {
-        AddParallel(c, t);
-      } else {
-        AddParallel(c);
-      }
-    } else {
-      if (t) {
-        AddSequential(c, t);
-      } else {
-        AddSequential(c);
-      }
-    }
-  });
+void ScriptCommand::ParseCommands(std::string script) {
+	CommandListParser &parser(CommandListParser::GetInstance());
+	parser.Parse(script, [this](bool parallel, Command *cmd, float timeout) {
+		if (parallel) {
+			if (timeout) {
+				AddParallel(cmd, timeout);
+			} else {
+				AddParallel(cmd);
+			}
+		} else {
+			if (timeout) {
+				AddSequential(cmd, timeout);
+			} else {
+				AddSequential(cmd);
+			}
+		}
+	});
 }
 
 // ==========================================================================

@@ -1,30 +1,27 @@
-#ifndef SCRIPTVALIDATE_H
-#define SCRIPTVALIDATE_H
+#pragma once
 
 #include <Commands/Command.h>
 #include <string>
 
 // ==========================================================================
 
-class ScriptValidate : public Command {
+class ScriptValidate : public frc::Command {
 public:
-  ScriptValidate();
-  ScriptValidate(const char *dashboardInput, const char *dashboardOutput);
+	ScriptValidate();
+	ScriptValidate(std::string dashboardInput, std::string dashboardOutput);
 
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 
 protected:
-  void ValidateCommands();
+	void ValidateCommands();
 
 private:
-  std::string _dashboardInput;
-  std::string _dashboardOutput;
+	std::string _dashboardInput;
+	std::string _dashboardOutput;
 };
 
 // ==========================================================================
-
-#endif

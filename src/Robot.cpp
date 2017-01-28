@@ -16,6 +16,7 @@
 #include "Commands/ZeroYaw.h"
 #include "Modules/CommandListParser.h"
 #include "Modules/Logger.h"
+#include "Modules/ScriptCommandFactory.h"
 
 OI *Robot::oi;
 Shooter *Robot::shooter = nullptr;
@@ -55,6 +56,8 @@ void Robot::RobotInit() {
   driveTrain->loadWheelOffsets();
 }
 
+void Robot::RobotPeriodic() {}
+
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {
@@ -62,32 +65,28 @@ void Robot::DisabledPeriodic() {
   // armSub->readPos();
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
-  SmartDashboard::PutNumber("feeder sensor",
-                            RobotMap::feederSensor->GetAverageVoltage());
+  SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
   SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
-  SmartDashboard::PutNumber("Vision Position Left",
-                            Robot::visionBridge->GetPosition(0));
-  SmartDashboard::PutNumber("Vision Position Right",
-                            Robot::visionBridge->GetPosition(1));
-  SmartDashboard::PutNumber("Vision Distance",
-                            Robot::visionBridge->GetDistance());
+  SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
+  SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));
+  SmartDashboard::PutNumber("Vision Distance", Robot::visionBridge->GetDistance());
 }
 
 void Robot::AutonomousInit() {
-  printf("Match time start: %f", (DriverStation::GetInstance().GetMatchTime()));
-  driveTrain->enableSteeringPID();
+	printf("Match time start: %f\r\n", DriverStation::GetInstance().GetMatchTime());
+	driveTrain->enableSteeringPID();
+	RobotMap::imu->ZeroYaw();
 
-  RobotMap::imu->ZeroYaw();
-  printf("Before new ScriptCommand: %f",
-         (DriverStation::GetInstance().GetMatchTime()));
-  autonomousCommand = new ScriptCommand("ScriptCommand");
-  printf("After new ScriptCommand: %f",
-         (DriverStation::GetInstance().GetMatchTime()));
-  if (autonomousCommand != nullptr)
-    autonomousCommand->Start();
-  printf("Match time end of init: %f",
-         (DriverStation::GetInstance().GetMatchTime()));
+	printf("Before new ScriptCommand: %f\r\n", DriverStation::GetInstance().GetMatchTime());
+	autonomousCommand = ScriptCommandFactory::GetInstance().GetCommand().release();
+	printf("After new ScriptCommand: %f\r\n", DriverStation::GetInstance().GetMatchTime());
+
+	if (autonomousCommand != nullptr){
+		autonomousCommand->Start();
+	}
+
+	printf("Match time end of init: %f\r\n", DriverStation::GetInstance().GetMatchTime());
 }
 
 void Robot::AutonomousPeriodic() {
@@ -95,16 +94,12 @@ void Robot::AutonomousPeriodic() {
   // armSub->readPos();
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
-  SmartDashboard::PutNumber("feeder sensor",
-                            RobotMap::feederSensor->GetAverageVoltage());
+  SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
   SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
-  SmartDashboard::PutNumber("Vision Position Left",
-                            Robot::visionBridge->GetPosition(0));
-  SmartDashboard::PutNumber("Vision Position Right",
-                            Robot::visionBridge->GetPosition(1));
-  SmartDashboard::PutNumber("Vision Distance",
-                            Robot::visionBridge->GetDistance());
+  SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
+  SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));
+  SmartDashboard::PutNumber("Vision Distance", Robot::visionBridge->GetDistance());
 }
 
 void Robot::TeleopInit() {
@@ -122,16 +117,12 @@ void Robot::TeleopPeriodic() {
   // armSub->readPos();
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
-  SmartDashboard::PutNumber("feeder sensor",
-                            RobotMap::feederSensor->GetAverageVoltage());
+  SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
   SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
-  SmartDashboard::PutNumber("Vision Position Left",
-                            Robot::visionBridge->GetPosition(0));
-  SmartDashboard::PutNumber("Vision Position Right",
-                            Robot::visionBridge->GetPosition(1));
-  SmartDashboard::PutNumber("Vision Distance",
-                            Robot::visionBridge->GetDistance());
+  SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
+  SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));
+  SmartDashboard::PutNumber("Vision Distance", Robot::visionBridge->GetDistance());
 }
 
 void Robot::TestPeriodic() { lw->Run(); }
@@ -297,7 +288,6 @@ void Robot::ScriptInit() {
         // if (0 == timeout) timeout = 4;
         fCreateCommand(command, 0);
       }));
-
   /*
   parser.AddCommand(CommandParseInfo("DriveMouse", { "DM", "dm" },
   [](std::vector<float> parameters, std::function<void(Command*, float)>
@@ -312,8 +302,6 @@ void Robot::ScriptInit() {
       fCreateCommand(command, 0);
   }));
 
-
-
   parser.AddCommand(CommandParseInfo("DriveDisplacement", { "DD", "dd" },
   [](std::vector<float> parameters, std::function<void(Command*, float)>
   fCreateCommand) {
@@ -327,7 +315,6 @@ void Robot::ScriptInit() {
   maxspeed, timeoutSeconds);
       fCreateCommand(command, 0);
   }));
-
 
   parser.AddCommand(CommandParseInfo("Elevate", { "E", "e" },
   [](std::vector<float> parameters, std::function<void(Command*, float)>
@@ -408,6 +395,9 @@ void Robot::ScriptInit() {
       fCreateCommand(command, 0);
   }));
 */
+  // Call IsValid to ensure that regular expressions
+  // get built before the start of autonomous.
+  parser.IsValid("S(0)");
 }
 
 START_ROBOT_CLASS(Robot);

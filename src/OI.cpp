@@ -1,6 +1,6 @@
 #include "OI.h"
-#include <Commands/SetWheelOffsets.h>
-
+#include <SmartDashboard/SmartDashboard.h>
+#include "Commands/SetWheelOffsets.h"
 #include "Commands/ArcadeDriveMode.h"
 #include "Commands/ArmDown.h"
 #include "Commands/ArmUp.h"
@@ -26,7 +26,6 @@
 #include "Commands/UnwindWheels.h"
 #include "Commands/UpdatePositions.h"
 #include "Commands/ZeroYaw.h"
-#include "SmartDashboard/SmartDashboard.h"
 
 const uint32_t JOYSTICK_LX_AXIS = 0;
 const uint32_t JOYSTICK_LY_AXIS = 1;
@@ -110,36 +109,36 @@ OI::OI() {
 }
 
 float OI::GetRightTrigger() {
-  auto value = driverJoystick->GetRawAxis(JOYSTICK_RTRIG_AXIS);
-  return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
+	auto value = driverJoystick->GetRawAxis(JOYSTICK_RTRIG_AXIS);
+	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
 float OI::GetLeftTrigger() {
-  auto value = driverJoystick->GetRawAxis(JOYSTICK_LTRIG_AXIS);
-  return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
+	auto value = driverJoystick->GetRawAxis(JOYSTICK_LTRIG_AXIS);
+	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
 float OI::GetJoystickX() {
-  auto value = driverJoystick->GetRawAxis(JOYSTICK_LX_AXIS);
-  return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
+	auto value = driverJoystick->GetRawAxis(JOYSTICK_LX_AXIS);
+	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
 float OI::GetJoystickY() {
-  auto value = driverJoystick->GetRawAxis(JOYSTICK_LY_AXIS);
-  return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
+	auto value = driverJoystick->GetRawAxis(JOYSTICK_LY_AXIS);
+	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
 float OI::GetJoystickZ() {
-  auto value = driverJoystick->GetRawAxis(JOYSTICK_RX_AXIS);
-  return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
+	auto value = driverJoystick->GetRawAxis(JOYSTICK_RX_AXIS);
+	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
 bool OI::GetButtonStart() {
-  auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_START);
-  return (value);
+	auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_START);
+	return (value);
 }
 
 bool OI::GetButtonA() {
-  auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_A);
-  return (value);
+	auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_A);
+	return (value);
 }

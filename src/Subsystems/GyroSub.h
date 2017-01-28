@@ -1,43 +1,34 @@
+// ==========================================================================
+// GyroSub class
+// The GyroSub subsystem represents the NavX accelerometer.
+//
+// FRC 4143: MARS/WARS
+// ==========================================================================
 #pragma once
 
-#include "../RobotMap.h"
-#include "Commands/Subsystem.h"
-#include "PIDSource.h"
-#include "WPILib.h"
-#include "../Robot.h"
+#include <Commands/Subsystem.h>
+#include <PIDSource.h>
+#include <AHRS.h>
 
-//
-// The GyroSub subsystem represents the NAV6 accelerometer.
-//
-// @author JKSalmon
-//
-class GyroSub : public Subsystem, public PIDSource {
+class GyroSub : public frc::Subsystem, public frc::PIDSource {
 public:
-  GyroSub();
+    GyroSub();
 
-  // Subsystem methods
-  virtual void InitDefaultCommand();
+    // Subsystem methods
+    virtual void InitDefaultCommand();
 
-  // PIDSource methods
-  virtual double PIDGet();
+    // PIDSource methods
+    virtual double PIDGet();
 
-  double GetHeading();
-  bool IsCalibrating();
-  void ResetGyro();
+    double GetHeading();
+    bool IsCalibrating();
+    void ResetGyro();
 
-#ifdef USE_NAVX
-  float GetDisplacementX();
-  float GetDisplacementY();
-#endif
+    float GetDisplacementX();
+    float GetDisplacementY();
 
 private:
-// Put everything in private except methods that implement subsystem
-// capabilities.
-#ifdef USE_NAVX
-  KauaiNavX::AHRS *theGyro() { return RobotMap::imu; }
-#else
-  AHRS *theGyro() { return RobotMap::imu; }
-#endif
+    AHRS* theGyro();
 };
 
-
+// ==========================================================================

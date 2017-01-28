@@ -1,5 +1,5 @@
 #include "RobotMap.h"
-#include "LiveWindow/LiveWindow.h"
+#include <LiveWindow/LiveWindow.h>
 
 bool RobotMap::SpeedControl = 0;
 
@@ -40,11 +40,7 @@ CANTalon *RobotMap::winchMotor;
 AnalogInput *RobotMap::winchPot;
 PIDController *RobotMap::shooterWinch;
 
-#ifdef USE_NAVX
-KauaiNavX::AHRS *RobotMap::imu = nullptr;
-#else
 AHRS *RobotMap::imu = nullptr;
-#endif
 
 #define CONTINUOUS true
 #define P 1.1 // 0.7

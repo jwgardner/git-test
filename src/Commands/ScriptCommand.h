@@ -1,24 +1,21 @@
-#ifndef SCRIPTCOMMAND_H
-#define SCRIPTCOMMAND_H
+#pragma once
 
-#include "Commands/CommandGroup.h"
-#include "string"
+#include <Commands/CommandGroup.h>
+#include <string>
 
 // ==========================================================================
 
-class ScriptCommand : public CommandGroup {
+class ScriptCommand : public frc::CommandGroup {
 public:
-  ScriptCommand(const char *name);
-  ScriptCommand(const char *name, std::string commands);
+	ScriptCommand(const char *name);
+	ScriptCommand(const char *name, std::string commands);
 
-  static void InitParameters();
+	static void InitParameters();
 
 protected:
-  void ParseCommands(std::string commands);
+	void ParseCommands(std::string commands);
 
 private:
 };
 
 // ==========================================================================
-
-#endif

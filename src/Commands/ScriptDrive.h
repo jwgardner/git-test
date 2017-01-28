@@ -1,23 +1,25 @@
-#ifndef SCRIPTDRIVE_H
-#define SCRIPTDRIVE_H
+#pragma once
 
-#include "WPILib.h"
 #include <Commands/Command.h>
+#include <string>
 
-class ScriptDrive : public Command {
+// ==========================================================================
+
+class ScriptDrive : public frc::Command {
 public:
-  ScriptDrive(const char *name, float x, float y, float z, float seconds);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ScriptDrive(std::string name, float x, float y, float z, float seconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 
 private:
-  float _x;
-  float _y;
-  float _z;
-  float _seconds;
+	float _x;
+	float _y;
+	float _z;
+	float _seconds;
 };
 
-#endif
+// ==========================================================================
