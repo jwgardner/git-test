@@ -1,26 +1,40 @@
-#include "DeFeed.h"
-#include "../Robot.h"
+#include "Commands/DeFeed.h"
+#include "Robot.h"
+
+// ==========================================================================
 
 DeFeed::DeFeed(double timeout) {
-  Requires(Robot::shooter);
-  SetTimeout(timeout);
+	Requires(Robot::shooter);
+	SetTimeout(timeout);
 }
 
-// Called just before this Command runs the first time
-void DeFeed::Initialize() { Robot::shooter->deFeed(); }
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
-void DeFeed::Execute() {}
+void DeFeed::Initialize() {
+	Robot::shooter->deFeed();
+}
 
-// Make this return true when this Command no longer needs to run execute()
+// ==========================================================================
+
+void DeFeed::Execute() {
+}
+
+// ==========================================================================
+
 bool DeFeed::IsFinished() {
-  return IsTimedOut() ||
-         !(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0);
+	return IsTimedOut() || !(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0);
 }
 
-// Called once after isFinished returns true
-void DeFeed::End() { Robot::shooter->stopFeed(); }
+// ==========================================================================
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void DeFeed::Interrupted() { End(); }
+void DeFeed::End() {
+	Robot::shooter->stopFeed();
+}
+
+// ==========================================================================
+
+void DeFeed::Interrupted() {
+	End();
+}
+
+// ==========================================================================

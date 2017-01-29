@@ -1,9 +1,7 @@
-#include <WPILib.h>
-#include <SmartDashboard/SmartDashboard.h>
-#include <iostream>
-
 #include "Commands/ScriptValidate.h"
+#include <SmartDashboard/SmartDashboard.h>
 #include "Modules/CommandListParser.h"
+#include "Modules/Logger.h"
 #include "Modules/ScriptCommandFactory.h"
 
 // ==========================================================================
@@ -15,15 +13,16 @@ ScriptValidate::ScriptValidate()
 // ==========================================================================
 
 ScriptValidate::ScriptValidate(std::string dashboardInput, std::string dashboardOutput)
-: Command("ScriptValidate"), _dashboardInput(dashboardInput), _dashboardOutput(dashboardOutput) {
-	std::cout << GetName() << "::ctor(" << dashboardInput << ", " << dashboardOutput << ")" << std::endl;
+: frc::Command("ScriptValidate"), _dashboardInput(dashboardInput), _dashboardOutput(dashboardOutput) {
+	std::string msg = GetName() + "::ctor(" + dashboardInput + ", " + dashboardOutput + ")";
+	LOG(msg);
+
 	SetRunWhenDisabled(true);
 }
 
 // ==========================================================================
 
 void ScriptValidate::Initialize() {
-	//std::cout << GetName() << "::Initialize" << std::endl;
 }
 
 // ==========================================================================
@@ -41,13 +40,11 @@ bool ScriptValidate::IsFinished() {
 // ==========================================================================
 
 void ScriptValidate::End() {
-	//std::cout << GetName() << "::End" << std::endl;
 }
 
 // ==========================================================================
 
 void ScriptValidate::Interrupted() {
-	//std::cout << GetName() << "::Interrupted" << std::endl;
 }
 
 // ==========================================================================
@@ -57,9 +54,7 @@ void ScriptValidate::ValidateCommands() {
 	auto script = SmartDashboard::GetString(_dashboardInput, "S(0)");
 	auto valid = parser.IsValid(script);
 	SmartDashboard::PutString(_dashboardOutput, valid ? "Valid" : "Invalid");
-	if (valid) {
-		ScriptCommandFactory::GetInstance().SetBlueprint(script);
-	}
+	ScriptCommandFactory::GetInstance().SetBlueprint(valid ? script : "");
 }
 
 // ==========================================================================

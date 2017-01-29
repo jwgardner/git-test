@@ -1,16 +1,18 @@
-#ifndef WaitForVision_H
-#define WaitForVision_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class WaitForVision : public Command {
+// ==========================================================================
+
+class WaitForVision : public frc::Command {
 public:
-  WaitForVision();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	WaitForVision();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

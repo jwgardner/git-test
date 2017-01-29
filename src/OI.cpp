@@ -46,6 +46,8 @@ const uint32_t JOYSTICK_BUTTON_LEFT = 9;
 const uint32_t JOYSTICK_BUTTON_RIGHT = 10;
 const float JOYSTICK_DEAD_ZONE = 0.1;
 
+// ==========================================================================
+
 OI::OI() {
   driverJoystick = new Joystick(0);
   armUp = new ArmUp();
@@ -108,37 +110,53 @@ OI::OI() {
   SmartDashboard::PutData("Validate Script", new ScriptValidate());
 }
 
+// ==========================================================================
+
 float OI::GetRightTrigger() {
 	auto value = driverJoystick->GetRawAxis(JOYSTICK_RTRIG_AXIS);
 	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
+
+// ==========================================================================
 
 float OI::GetLeftTrigger() {
 	auto value = driverJoystick->GetRawAxis(JOYSTICK_LTRIG_AXIS);
 	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
+// ==========================================================================
+
 float OI::GetJoystickX() {
 	auto value = driverJoystick->GetRawAxis(JOYSTICK_LX_AXIS);
 	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
+
+// ==========================================================================
 
 float OI::GetJoystickY() {
 	auto value = driverJoystick->GetRawAxis(JOYSTICK_LY_AXIS);
 	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
+// ==========================================================================
+
 float OI::GetJoystickZ() {
 	auto value = driverJoystick->GetRawAxis(JOYSTICK_RX_AXIS);
 	return (fabs(value) < JOYSTICK_DEAD_ZONE) ? 0 : value;
 }
 
+// ==========================================================================
+
 bool OI::GetButtonStart() {
 	auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_START);
-	return (value);
+	return value;
 }
+
+// ==========================================================================
 
 bool OI::GetButtonA() {
 	auto value = GetDriverJoystick()->GetRawButton(JOYSTICK_BUTTON_A);
-	return (value);
+	return value;
 }
+
+// ==========================================================================

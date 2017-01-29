@@ -1,16 +1,18 @@
-#ifndef ResetWinch_H
-#define ResetWinch_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ResetWinch : public Command {
+// ==========================================================================
+
+class ResetWinch : public frc::Command {
 public:
-  ResetWinch();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ResetWinch();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

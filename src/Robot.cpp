@@ -66,7 +66,7 @@ void Robot::DisabledPeriodic() {
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
   SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
-  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
+  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->ShooterIsRaised());
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
   SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
   SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));
@@ -95,7 +95,7 @@ void Robot::AutonomousPeriodic() {
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
   SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
-  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
+  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->ShooterIsRaised());
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
   SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
   SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));
@@ -118,7 +118,7 @@ void Robot::TeleopPeriodic() {
   winchSub->readPos();
   driveTrain->updateDistanceEncoders();
   SmartDashboard::PutNumber("feeder sensor", RobotMap::feederSensor->GetAverageVoltage());
-  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->shooterRaised);
+  SmartDashboard::PutBoolean("Shooter Raised", Robot::winchSub->ShooterIsRaised());
   SmartDashboard::PutNumber("Gyro Yaw", RobotMap::imu->GetYaw());
   SmartDashboard::PutNumber("Vision Position Left", Robot::visionBridge->GetPosition(0));
   SmartDashboard::PutNumber("Vision Position Right", Robot::visionBridge->GetPosition(1));

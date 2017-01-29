@@ -1,16 +1,21 @@
-#ifndef Wait_H
-#define Wait_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class Wait : public Command {
+// ==========================================================================
+
+class Wait : public frc::Command {
 public:
-  Wait(double time);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	Wait(double timeoutSeconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	double _timeoutSeconds;
 };
 
-#endif
+// ==========================================================================

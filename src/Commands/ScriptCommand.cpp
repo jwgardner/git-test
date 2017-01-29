@@ -13,7 +13,7 @@ ScriptCommand::ScriptCommand(const char *name)
 // ==========================================================================
 
 ScriptCommand::ScriptCommand(const char *name, std::string script)
-: CommandGroup(name) {
+: frc::CommandGroup(name) {
 	std::cout << "ScriptCommand:" << name << std::endl;
 	ParseCommands(script);
 }

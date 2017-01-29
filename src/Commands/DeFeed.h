@@ -1,16 +1,18 @@
-#ifndef DeFeed_H
-#define DeFeed_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class DeFeed : public Command {
+// ==========================================================================
+
+class DeFeed : public frc::Command {
 public:
-  DeFeed(double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	DeFeed(double timeout);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

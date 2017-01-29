@@ -11,7 +11,7 @@ StowArm::StowArm() {
 
 void StowArm::Initialize() {
 	SetTimeout(1);
-	Robot::armSub->stowArm();
+	Robot::armSub->StowArm();
 }
 
 // ==========================================================================
@@ -28,7 +28,7 @@ bool StowArm::IsFinished() {
 // ==========================================================================
 
 void StowArm::End() {
-	Robot::armSub->disablePositionControl();
+	Robot::armSub->DisablePositionControl();
 }
 
 // ==========================================================================

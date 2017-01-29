@@ -1,12 +1,12 @@
-#ifndef ShootCycle_H
-#define ShootCycle_H
+#pragma once
 
-#include "Commands/CommandGroup.h"
-#include "WPILib.h"
+#include <Commands/CommandGroup.h>
 
-class ShootCycle : public CommandGroup {
+// ==========================================================================
+
+class ShootCycle : public frc::CommandGroup {
 public:
-  ShootCycle(int side);
+	ShootCycle(int side);
 };
 
-#endif
+// ==========================================================================

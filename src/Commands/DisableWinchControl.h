@@ -1,16 +1,18 @@
-#ifndef DisableWinchControl_H
-#define DisableWinchControl_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class DisableWinchControl : public Command {
+// ==========================================================================
+
+class DisableWinchControl : public frc::Command {
 public:
-  DisableWinchControl();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	DisableWinchControl();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

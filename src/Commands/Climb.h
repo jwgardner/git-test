@@ -1,16 +1,18 @@
-#ifndef Climb_H
-#define Climb_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class Climb : public Command {
+// ==========================================================================
+
+class Climb : public frc::Command {
 public:
-  Climb();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	Climb();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

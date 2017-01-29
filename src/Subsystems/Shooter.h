@@ -1,31 +1,35 @@
 #pragma once
 
-#include "Commands/Subsystem.h"
-#include "Timer.h"
-#include "WPILib.h"
-#include "CANTalon.h"
+#include <Commands/Subsystem.h>
+#include <WPILib.h>
+#include <CANTalon.h>
 
-class Shooter : public Subsystem {
-private:
-  SpeedController *feeder;
+// ==========================================================================
 
+class Shooter : public frc::Subsystem {
 public:
-  CANTalon *leftFront;
-  CANTalon *rightRear;
-  CANTalon *rightFront;
-  CANTalon *leftRear;
-  AnalogInput *feederSensor;
-  Shooter();
-  void InitDefaultCommand();
-  void shootFront();
-  void shootBack();
-  void stopFront();
-  void stopBack();
-  void feed();
-  void deFeed();
-  void stopFeed();
-  void shootDefault(float right, float left);
-  double getVelocity();
+	Shooter();
+
+	void InitDefaultCommand();
+
+	void shootFront();
+	void shootBack();
+	void stopFront();
+	void stopBack();
+	void feed();
+	void deFeed();
+	void stopFeed();
+	void shootDefault(float right, float left);
+	double getVelocity();
+
+	CANTalon* leftFront;
+	AnalogInput* feederSensor;
+
+private:
+	CANTalon* _leftRear;
+	CANTalon* _rightFront;
+	CANTalon* _rightRear;
+	SpeedController* _feeder;
 };
 
-
+// ==========================================================================

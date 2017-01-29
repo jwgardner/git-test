@@ -35,8 +35,7 @@ void UnwindWheels::End() {
 // ==========================================================================
 
 void UnwindWheels::Interrupted() {
-	SmartDashboard::PutString("Unwinding", "false");
-	Robot::driveTrain->doneunwind();
+	End();
 }
 
 // ==========================================================================

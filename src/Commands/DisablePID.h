@@ -1,16 +1,18 @@
-#ifndef DisablePID_H
-#define DisablePID_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class DisablePID : public Command {
+// ==========================================================================
+
+class DisablePID : public frc::Command {
 public:
-  DisablePID();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	DisablePID();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

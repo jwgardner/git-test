@@ -1,14 +1,16 @@
 #pragma once
 
-#include "Logger.h"
+#include "Modules/Logger.h"
 #include <AnalogInput.h>
 #include <AnalogTrigger.h>
 #include <AnalogTriggerOutput.h>
 #include <Base.h>
 #include <Counter.h>
 #include <WPILib.h>
-#include "CANTalon.h"
+#include <CANTalon.h>
 
+// ==========================================================================
+// TODO - Clean up this class
 
 class AnalogChannelVolt : public AnalogInput {
 public:
@@ -26,10 +28,10 @@ public:
   void SetOffset(double offset);
 
 private:
-  CANTalon *m_motor;
+  CANTalon* m_motor;
   double m_offset;
-  // AnalogTrigger *m_trig;
-  // Counter *m_count;
+  // AnalogTrigger* m_trig;
+  // Counter* m_count;
   // uint32_t m_channel;
   // bool Inv;
   // float rev;
@@ -37,3 +39,5 @@ private:
   // float scale;
   // int Ratio;
 };
+
+// ==========================================================================

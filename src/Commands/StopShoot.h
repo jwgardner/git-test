@@ -1,16 +1,18 @@
-#ifndef StopShoot_H
-#define StopShoot_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class StopShoot : public Command {
+// ==========================================================================
+
+class StopShoot : public frc::Command {
 public:
-  StopShoot();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	StopShoot();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

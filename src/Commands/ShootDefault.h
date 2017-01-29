@@ -1,16 +1,18 @@
-#ifndef ShootDefault_H
-#define ShootDefault_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ShootDefault : public Command {
+// ==========================================================================
+
+class ShootDefault : public frc::Command {
 public:
-  ShootDefault();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ShootDefault();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

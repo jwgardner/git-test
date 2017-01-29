@@ -1,20 +1,23 @@
-#ifndef SetWinchPosition_H
-#define SetWinchPosition_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class SetWinchPosition : public Command {
-private:
-  double pos;
+// ==========================================================================
 
+class SetWinchPosition : public frc::Command {
 public:
-  SetWinchPosition(int pos, bool holdPos, double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
-  bool holdPos;
+	SetWinchPosition(int pos, bool holdPos, double timeoutSeconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	int _pos;
+	bool _holdPos;
+	double _timeoutSeconds;
 };
 
-#endif
+// ==========================================================================

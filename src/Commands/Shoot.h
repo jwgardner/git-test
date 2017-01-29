@@ -1,16 +1,21 @@
-#ifndef Shoot_H
-#define Shoot_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class Shoot : public Command {
+// ==========================================================================
+
+class Shoot : public frc::Command {
 public:
-  Shoot(double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	Shoot(double timeoutSeconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+public:
+	double _timeoutSeconds;
 };
 
-#endif
+// ==========================================================================

@@ -1,26 +1,29 @@
 #pragma once
 
-#include "Commands/Subsystem.h"
-#include "WPILib.h"
-#include "CANTalon.h"
+#include <Commands/Subsystem.h>
+#include <CANTalon.h>
 
+// ==========================================================================
 
-class ArmSub : public Subsystem {
-private:
-  double offset;
-
+class ArmSub : public frc::Subsystem {
 public:
-  CANTalon *armMotor;
-  ArmSub();
-  void InitDefaultCommand();
-  void armDown();
-  void stop();
-  void armUp();
-  void readPos();
-  void reset();
-  void stowArm();
-  void setOffset(double offset);
-  void disablePositionControl();
+	ArmSub();
+
+	void InitDefaultCommand();
+
+	double GetRawPosition() const;
+	void ArmDown();
+	void ArmUp();
+	void DisablePositionControl();
+	void DisplayPosition();
+	void Reset();
+	void SetOffset(double offset);
+	void Stop();
+	void StowArm();
+
+private:
+	CANTalon* _armMotor;
+	double _offset;
 };
 
-
+// ==========================================================================

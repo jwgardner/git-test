@@ -7,7 +7,7 @@
 // is most square when the command is started.
 // ==========================================================================
 
-class GyroCrab : public Command {
+class GyroCrab : public frc::Command {
 public:
 	GyroCrab();
 

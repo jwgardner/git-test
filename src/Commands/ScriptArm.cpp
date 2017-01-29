@@ -12,12 +12,15 @@ ScriptArm::ScriptArm(int pos)
 
 void ScriptArm::Initialize() {
 	SetTimeout(0.5);
-	if (_pos == 0)
-		Robot::armSub->stowArm();
-	if (_pos == 1)
-		Robot::armSub->armUp();
-	if (_pos == 2)
-		Robot::armSub->armDown();
+	if (_pos == 0) {
+		Robot::armSub->StowArm();
+	}
+	else if (_pos == 1) {
+		Robot::armSub->ArmUp();
+	}
+	else if (_pos == 2) {
+		Robot::armSub->ArmDown();
+	}
 }
 
 // ==========================================================================
@@ -34,7 +37,7 @@ bool ScriptArm::IsFinished() {
 // ==========================================================================
 
 void ScriptArm::End() {
-	Robot::armSub->disablePositionControl();
+	Robot::armSub->DisablePositionControl();
 }
 
 // ==========================================================================

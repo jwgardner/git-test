@@ -1,26 +1,27 @@
-#include "Shoot.h"
-#include "../Robot.h"
+#include "Commands/Shoot.h"
+#include "Robot.h"
 
-Shoot::Shoot(double timeout) {
-  Requires(Robot::shooter);
-  SetTimeout(timeout);
+Shoot::Shoot(double timeoutSeconds)
+: _timeoutSeconds(timeoutSeconds) {
+	Requires(Robot::shooter);
 }
 
-// Called just before this Command runs the first time
 void Shoot::Initialize() {
-  Robot::shooter->shootFront();
-  Robot::shooter->shootBack();
+	SetTimeout(_timeoutSeconds);
+	Robot::shooter->shootFront();
+	Robot::shooter->shootBack();
 }
 
-// Called repeatedly when this Command is scheduled to run
-void Shoot::Execute() {}
+void Shoot::Execute() {
+}
 
-// Make this return true when this Command no longer needs to run execute()
-bool Shoot::IsFinished() { return IsTimedOut(); }
+bool Shoot::IsFinished() {
+	return IsTimedOut();
+}
 
-// Called once after isFinished returns true
-void Shoot::End() {}
+void Shoot::End() {
+}
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void Shoot::Interrupted() { End(); }
+void Shoot::Interrupted() {
+	End();
+}

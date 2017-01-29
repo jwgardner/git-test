@@ -1,16 +1,18 @@
-#ifndef BackupToCenter_H
-#define BackupToCenter_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class BackupToCenter : public Command {
+// ==========================================================================
+
+class BackupToCenter : public frc::Command {
 public:
-  BackupToCenter();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	BackupToCenter();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

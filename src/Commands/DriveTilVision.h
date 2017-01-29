@@ -1,18 +1,24 @@
-#ifndef DriveTilVision_H
-#define DriveTilVision_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class DriveTilVision : public Command {
+// ==========================================================================
+
+class DriveTilVision : public frc::Command {
 public:
-  double _x, _y, _twist;
+	DriveTilVision(double y, double x, double twist, double seconds);
 
-  DriveTilVision(double y, double x, double twist, double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	double _x;
+	double _y;
+	double _twist;
+	double _seconds;
 };
 
-#endif
+// ==========================================================================

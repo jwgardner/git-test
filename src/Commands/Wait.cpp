@@ -1,24 +1,38 @@
-#include "Wait.h"
-#include "../Robot.h"
+#include "Commands/Wait.h"
+#include "Robot.h"
 
-Wait::Wait(double time) {
-  SetTimeout(time);
-  // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(chassis);
+// ==========================================================================
+
+Wait::Wait(double timeoutSeconds)
+: _timeoutSeconds(timeoutSeconds) {
 }
 
-// Called just before this Command runs the first time
-void Wait::Initialize() {}
+// ==========================================================================
 
-// Called repeatedly when this Command is scheduled to run
-void Wait::Execute() {}
+void Wait::Initialize() {
+	SetTimeout(_timeoutSeconds);
+}
 
-// Make this return true when this Command no longer needs to run execute()
-bool Wait::IsFinished() { return IsTimedOut(); }
+// ==========================================================================
 
-// Called once after isFinished returns true
-void Wait::End() {}
+void Wait::Execute() {
+}
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void Wait::Interrupted() {}
+// ==========================================================================
+
+bool Wait::IsFinished() {
+	return IsTimedOut();
+}
+
+// ==========================================================================
+
+void Wait::End() {
+}
+
+// ==========================================================================
+
+void Wait::Interrupted() {
+	End();
+}
+
+// ==========================================================================

@@ -1,16 +1,18 @@
-#ifndef Climb_Reverse_H
-#define Climb_Reverse_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class ClimbReverse : public Command {
+// ==========================================================================
+
+class ClimbReverse : public frc::Command {
 public:
-ClimbReverse();
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	ClimbReverse();
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
 };
 
-#endif
+// ==========================================================================

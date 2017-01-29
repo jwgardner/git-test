@@ -1,17 +1,22 @@
-#ifndef LowGoalShoot_H
-#define LowGoalShoot_H
+#pragma once
 
-#include "WPILib.h"
+#include <Commands/Command.h>
 
-class LowGoalShoot : public Command {
+// ==========================================================================
+
+class LowGoalShoot : public frc::Command {
 public:
-  int counter;
-  LowGoalShoot(double timeout);
-  void Initialize();
-  void Execute();
-  bool IsFinished();
-  void End();
-  void Interrupted();
+	LowGoalShoot(double timeoutSeconds);
+
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+
+private:
+	int _counter;
+	double _timeoutSeconds;
 };
 
-#endif
+// ==========================================================================

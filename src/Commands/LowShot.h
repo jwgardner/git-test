@@ -1,12 +1,12 @@
-#ifndef LowShot_H
-#define LowShot_H
+#pragma once
 
-#include "Commands/CommandGroup.h"
-#include "WPILib.h"
+#include <Commands/CommandGroup.h>
 
-class LowShot : public CommandGroup {
+// ==========================================================================
+
+class LowShot : public frc::CommandGroup {
 public:
-  LowShot();
+	LowShot();
 };
 
-#endif
+// ==========================================================================
