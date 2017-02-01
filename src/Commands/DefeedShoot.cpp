@@ -3,42 +3,42 @@
 
 // ==========================================================================
 
-DefeedShoot::DefeedShoot(double timeout) {
+DefeedShoot::DefeedShoot(double timeoutSeconds)
+: _timeoutSeconds(timeoutSeconds) {
 	Requires(Robot::shooter);
-	SetTimeout(timeout);
 }
 
 // ==========================================================================
 
 void DefeedShoot::Initialize() {
-	Robot::shooter->deFeed();
+	SetTimeout(_timeoutSeconds);
+	Robot::shooter->DeFeed();
 }
 
 // ==========================================================================
 
 void DefeedShoot::Execute() {
-	if (!(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0)) {
-		Robot::shooter->shootFront();
-		Robot::shooter->shootBack();
-		Robot::shooter->stopFeed();
+	if (Robot::shooter->SeesBall()) {
+		Robot::shooter->ShootFront();
+		Robot::shooter->ShootBack();
+		Robot::shooter->StopFeed();
 	}
+
 	if (Robot::oi->GetLeftTrigger() > 0.1) {
-		Robot::shooter->feed();
+		Robot::shooter->Feed();
 	}
 }
 
 // ==========================================================================
 
 bool DefeedShoot::IsFinished() {
-	return IsTimedOut() ||
-		(!(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0) &&
-		std::abs(Robot::shooter->leftFront->GetSpeed()) > 4000);
+	return IsTimedOut() || (Robot::shooter->SeesBall() && Robot::shooter->IsAtShootingSpeed());
 }
 
 // ==========================================================================
 
 void DefeedShoot::End() {
-	Robot::shooter->stopFeed();
+	Robot::shooter->StopFeed();
 }
 
 // ==========================================================================

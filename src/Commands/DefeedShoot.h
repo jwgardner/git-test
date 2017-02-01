@@ -6,13 +6,16 @@
 
 class DefeedShoot : public frc::Command {
 public:
-	DefeedShoot(double timeout);
+	DefeedShoot(double timeoutSeconds);
 
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
+private:
+	double _timeoutSeconds;
 };
 
 // ==========================================================================

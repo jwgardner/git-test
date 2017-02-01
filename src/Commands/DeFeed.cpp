@@ -3,15 +3,16 @@
 
 // ==========================================================================
 
-DeFeed::DeFeed(double timeout) {
+DeFeed::DeFeed(double timeoutSeconds)
+: _timeoutSeconds(timeoutSeconds) {
 	Requires(Robot::shooter);
-	SetTimeout(timeout);
 }
 
 // ==========================================================================
 
 void DeFeed::Initialize() {
-	Robot::shooter->deFeed();
+	SetTimeout(_timeoutSeconds);
+	Robot::shooter->DeFeed();
 }
 
 // ==========================================================================
@@ -22,13 +23,13 @@ void DeFeed::Execute() {
 // ==========================================================================
 
 bool DeFeed::IsFinished() {
-	return IsTimedOut() || !(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0);
+	return IsTimedOut() || Robot::shooter->SeesBall();
 }
 
 // ==========================================================================
 
 void DeFeed::End() {
-	Robot::shooter->stopFeed();
+	Robot::shooter->StopFeed();
 }
 
 // ==========================================================================

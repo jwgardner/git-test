@@ -12,24 +12,27 @@ public:
 
 	void InitDefaultCommand();
 
-	void shootFront();
-	void shootBack();
-	void stopFront();
-	void stopBack();
-	void feed();
-	void deFeed();
-	void stopFeed();
-	void shootDefault(float right, float left);
-	double getVelocity();
+	double GetVelocity() const;
+	bool IsAtShootingSpeed();
+	bool SeesBall();
 
-	CANTalon* leftFront;
-	AnalogInput* feederSensor;
+	void Shoot(float right, float left);
+	void ShootFront();
+	void ShootBack();
+	void StopFront();
+	void StopBack();
+
+	void Feed();
+	void DeFeed();
+	void StopFeed();
 
 private:
+	CANTalon* _leftFront;
 	CANTalon* _leftRear;
 	CANTalon* _rightFront;
 	CANTalon* _rightRear;
 	SpeedController* _feeder;
+	AnalogInput* _feederSensor;
 };
 
 // ==========================================================================

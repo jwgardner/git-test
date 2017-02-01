@@ -13,7 +13,7 @@ LowGoalShoot::LowGoalShoot(double timeoutSeconds)
 void LowGoalShoot::Initialize() {
 	_counter = 0;
 	SetTimeout(_timeoutSeconds);
-	Robot::shooter->shootFront();
+	Robot::shooter->ShootFront();
 }
 
 // ==========================================================================
@@ -21,7 +21,7 @@ void LowGoalShoot::Initialize() {
 void LowGoalShoot::Execute() {
 	_counter++;
 	if (_counter > 10) {
-		Robot::shooter->shootBack();
+		Robot::shooter->ShootBack();
 	}
 }
 

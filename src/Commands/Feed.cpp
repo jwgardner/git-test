@@ -13,30 +13,32 @@ Feed::Feed(double seconds)
 void Feed::Initialize() {
 	SetTimeout(_seconds);
 	_seenBall = false;
-	Robot::shooter->shootFront();
-	Robot::shooter->shootBack();
+	Robot::shooter->ShootFront();
+	Robot::shooter->ShootBack();
 }
 
 // ==========================================================================
 
 void Feed::Execute() {
-	if (std::abs(Robot::shooter->leftFront->GetSpeed()) > 4000)
-		Robot::shooter->feed();
-	if (Robot::shooter->feederSensor->GetAverageVoltage() > 4.0)
+	if (Robot::shooter->IsAtShootingSpeed()) {
+		Robot::shooter->Feed();
+	}
+
+	if (Robot::shooter->SeesBall()) {
 		_seenBall = true;
+	}
 }
 
 // ==========================================================================
 
 bool Feed::IsFinished() {
-	return IsTimedOut() ||
-		(Robot::shooter->feederSensor->GetAverageVoltage() < 4.0 && _seenBall);
+	return IsTimedOut() || (_seenBall && !Robot::shooter->SeesBall());
 }
 
 // ==========================================================================
 
 void Feed::End() {
-	Robot::shooter->stopFeed();
+	Robot::shooter->StopFeed();
 }
 
 // ==========================================================================

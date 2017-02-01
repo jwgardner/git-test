@@ -15,7 +15,7 @@ void ShootDefault::Initialize() {
 // ==========================================================================
 
 void ShootDefault::Execute() {
-	Robot::shooter->shootDefault(Robot::oi->GetRightTrigger(), Robot::oi->GetLeftTrigger());
+	Robot::shooter->Shoot(Robot::oi->GetRightTrigger(), Robot::oi->GetLeftTrigger());
 }
 
 // ==========================================================================
@@ -27,8 +27,8 @@ bool ShootDefault::IsFinished() {
 // ==========================================================================
 
 void ShootDefault::End() {
-	Robot::shooter->stopFront();
-	Robot::shooter->stopBack();
+	Robot::shooter->StopFront();
+	Robot::shooter->StopBack();
 }
 
 // ==========================================================================

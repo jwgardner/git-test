@@ -8,8 +8,8 @@ Shoot::Shoot(double timeoutSeconds)
 
 void Shoot::Initialize() {
 	SetTimeout(_timeoutSeconds);
-	Robot::shooter->shootFront();
-	Robot::shooter->shootBack();
+	Robot::shooter->ShootFront();
+	Robot::shooter->ShootBack();
 }
 
 void Shoot::Execute() {

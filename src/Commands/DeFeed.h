@@ -6,13 +6,16 @@
 
 class DeFeed : public frc::Command {
 public:
-	DeFeed(double timeout);
+	DeFeed(double timeoutSeconds);
 
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
+private:
+	double _timeoutSeconds;
 };
 
 // ==========================================================================
