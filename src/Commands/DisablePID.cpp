@@ -9,10 +9,7 @@ DisablePID::DisablePID() {
 // ==========================================================================
 
 void DisablePID::Initialize() {
-	Robot::driveTrain->frontLeft->Disable();
-	Robot::driveTrain->frontRight->Disable();
-	Robot::driveTrain->rearLeft->Disable();
-	Robot::driveTrain->rearRight->Disable();
+	Robot::driveTrain->EnablePIDs(false);
 }
 
 // ==========================================================================
@@ -29,10 +26,7 @@ bool DisablePID::IsFinished() {
 // ==========================================================================
 
 void DisablePID::End() {
-	Robot::driveTrain->frontLeft->Enable();
-	Robot::driveTrain->frontRight->Enable();
-	Robot::driveTrain->rearLeft->Enable();
-	Robot::driveTrain->rearRight->Enable();
+	Robot::driveTrain->EnablePIDs(true);
 }
 
 // ==========================================================================
