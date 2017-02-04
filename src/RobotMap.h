@@ -4,56 +4,50 @@
 #include <AHRS.h>
 #include <CANTalon.h>
 #include "Modules/AnalogChannelVolt.h"
-#include "Modules/Logger.h"
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 class RobotMap {
 public:
-  static bool SpeedControl;
+	static bool SpeedControl;
 
-  static PIDController *driveTrainFrontLeft;
-  static CANTalon *driveTrainFrontLeftDrive;
-  static AnalogChannelVolt *driveTrainFrontLeftPos;
-  static CANTalon *driveTrainFrontLeftSteer;
+	static PIDController* driveTrainFrontLeft;
+	static CANTalon* driveTrainFrontLeftDrive;
+	static AnalogChannelVolt* driveTrainFrontLeftPos;
+	static CANTalon* driveTrainFrontLeftSteer;
 
-  static PIDController *driveTrainFrontRight;
-  static CANTalon *driveTrainFrontRightDrive;
-  static AnalogChannelVolt *driveTrainFrontRightPos;
-  static CANTalon *driveTrainFrontRightSteer;
+	static PIDController* driveTrainFrontRight;
+	static CANTalon* driveTrainFrontRightDrive;
+	static AnalogChannelVolt* driveTrainFrontRightPos;
+	static CANTalon* driveTrainFrontRightSteer;
 
-  static PIDController *driveTrainRearLeft;
-  static CANTalon *driveTrainRearLeftDrive;
-  static AnalogChannelVolt *driveTrainRearLeftPos;
-  static CANTalon *driveTrainRearLeftSteer;
+	static PIDController* driveTrainRearLeft;
+	static CANTalon* driveTrainRearLeftDrive;
+	static AnalogChannelVolt* driveTrainRearLeftPos;
+	static CANTalon* driveTrainRearLeftSteer;
 
-  static PIDController *driveTrainRearRight;
-  static CANTalon *driveTrainRearRightDrive;
-  static AnalogChannelVolt *driveTrainRearRightPos;
-  static CANTalon *driveTrainRearRightSteer;
+	static PIDController* driveTrainRearRight;
+	static CANTalon* driveTrainRearRightDrive;
+	static AnalogChannelVolt* driveTrainRearRightPos;
+	static CANTalon* driveTrainRearRightSteer;
 
-  static I2C *i2c;
+	static I2C* i2c;
 
-  static AHRS *imu;
+	static AHRS* imu;
 
-  static SerialPort *serialPort;
+	static SerialPort* serialPort;
 
-  static CANTalon *leftFront;
-  static CANTalon *rightRear;
-  static CANTalon *rightFront;
-  static CANTalon *leftRear;
-  static SpeedController *feeder;
-  static AnalogInput *feederSensor;
+	static CANTalon* leftFront;
+	static CANTalon* rightRear;
+	static CANTalon* rightFront;
+	static CANTalon* leftRear;
 
-  static CANTalon *armMotor;
+	static SpeedController* feeder;
+	static AnalogInput* feederSensor;
 
-  static CANTalon *winchMotor;
-  static AnalogInput *winchPot;
-  static PIDController *shooterWinch;
+	static CANTalon* armMotor;
 
-  static void init();
+	static CANTalon* winchMotor;
+	static AnalogInput* winchPot;
+	static PIDController* shooterWinch;
+
+	static void Initialize();
 };

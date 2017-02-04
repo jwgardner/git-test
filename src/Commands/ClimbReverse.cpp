@@ -15,7 +15,7 @@ void ClimbReverse::Initialize() {
 // ==========================================================================
 
 void ClimbReverse::Execute() {
-	Robot::winchSub->climbReverse();
+	Robot::winchSub->ClimbReverse();
 }
 
 // ==========================================================================
@@ -27,7 +27,7 @@ bool ClimbReverse::IsFinished() {
 // ==========================================================================
 
 void ClimbReverse::End() {
-	Robot::winchSub->stopClimb();
+	Robot::winchSub->StopClimb();
 }
 
 // ==========================================================================

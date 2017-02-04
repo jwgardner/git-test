@@ -49,65 +49,58 @@ const float JOYSTICK_DEAD_ZONE = 0.1;
 // ==========================================================================
 
 OI::OI() {
-  driverJoystick = new Joystick(0);
-  armUp = new ArmUp();
-  armDown = new ArmDown();
-  stowArm = new StowArm();
-  unwindWheels = new UnwindWheels();
-  winchSet1 = new SetWinchPosition(0, false, 1.5); // starting
-  winchSet2 = new SetWinchPosition(1, false, 2.5); // raised
-  winchSet3 = new SetWinchPosition(2, false, 1.5); // lowered
-  deFeed = new DeFeed(1);
-  gyroCrab = new GyroCrab();
-  fieldCentric = new FieldCentric();
-  shootCycle = new ShootCycle(0);
-  lowShot = new LowShot();
-  // arcade = new ArcadeDriveMode();
-  climb = new Climb();
-  climbReverse = new ClimbReverse();
+	driverJoystick = new Joystick(0);
+	armUp = new ArmUp();
+	armDown = new ArmDown();
+	stowArm = new StowArm();
+	unwindWheels = new UnwindWheels();
+	winchSet1 = new SetWinchPosition(0, false, 1.5); // starting
+	winchSet2 = new SetWinchPosition(1, false, 2.5); // raised
+	winchSet3 = new SetWinchPosition(2, false, 1.5); // lowered
+	deFeed = new DeFeed(1);
+	gyroCrab = new GyroCrab();
+	fieldCentric = new FieldCentric();
+	shootCycle = new ShootCycle(0);
+	lowShot = new LowShot();
+	//arcade = new ArcadeDriveMode();
+	climb = new Climb();
+	climbReverse = new ClimbReverse();
 
-  auto cameraEnableCmd = new BasicCameraEnableCmd(Robot::basicCameraSub);
+	auto cameraEnableCmd = new BasicCameraEnableCmd(Robot::basicCameraSub);
 
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_Y))->WhileHeld(armDown);
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_X))->WhileHeld(stowArm);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_Y))->WhileHeld(armDown);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_X))->WhileHeld(stowArm);
 
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_B))->WhileHeld(climbReverse);//->WhileHeld(lowShot);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_B))->WhileHeld(climbReverse);//->WhileHeld(lowShot);
 
-/*
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_BACK))
-      ->WhenPressed(winchSet2);
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))
-      ->WhenPressed(winchSet3);
-*/
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))->WhenPressed(cameraEnableCmd);
 
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RB))
-      ->WhileHeld(unwindWheels);
+	//(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_BACK))->WhenPressed(winchSet2);
+	//(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))->WhenPressed(winchSet3);
 
-  //(new JoystickButton(driverJoystick,
-  // JOYSTICK_BUTTON_START))->WhileHeld(arcade);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))->WhenPressed(cameraEnableCmd);
 
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LB))->WhenPressed(deFeed);
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_A))
-		->WhileHeld(climb);
-      //->WhileHeld(shootCycle);
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RIGHT))
-      ->WhileHeld(gyroCrab);
-  (new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LEFT))
-      ->WhileHeld(fieldCentric);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RB))->WhileHeld(unwindWheels);
 
-  SmartDashboard::PutData("Camera On", cameraEnableCmd);
+	//(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_START))->WhileHeld(arcade);
 
-  // SmartDashboard::PutData("Camera", useCamera);
-  SmartDashboard::PutData("SetWheelOffsets", new SetWheelOffsets());
-  SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LB))->WhenPressed(deFeed);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_A))->WhileHeld(climb);
+	//->WhileHeld(shootCycle);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_RIGHT))->WhileHeld(gyroCrab);
+	(new JoystickButton(driverJoystick, JOYSTICK_BUTTON_LEFT))->WhileHeld(fieldCentric);
 
-  SmartDashboard::PutNumber("Winch 0", 2.99);
-  SmartDashboard::PutNumber("Winch 1", 2.49);
-  SmartDashboard::PutNumber("Winch 2", 2.99);
+	SmartDashboard::PutData("Camera On", cameraEnableCmd);
 
-  SmartDashboard::PutData("Update Positions", new UpdatePositions());
-  SmartDashboard::PutData("Validate Script", new ScriptValidate());
+	//SmartDashboard::PutData("Camera", useCamera);
+	SmartDashboard::PutData("SetWheelOffsets", new SetWheelOffsets());
+	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
+
+	SmartDashboard::PutNumber("Winch 0", 2.99);
+	SmartDashboard::PutNumber("Winch 1", 2.49);
+	SmartDashboard::PutNumber("Winch 2", 2.99);
+
+	SmartDashboard::PutData("Update Positions", new UpdatePositions());
+	SmartDashboard::PutData("Validate Script", new ScriptValidate());
 }
 
 // ==========================================================================

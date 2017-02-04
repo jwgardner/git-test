@@ -2,24 +2,21 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include "RobotMap.h"
 
-const bool WinchSub::angleSensor = 1;
+const bool WinchSub::angleSensor = true;
 
 // ==========================================================================
 
 WinchSub::WinchSub()
-:	frc::Subsystem("ExampleSubsystem") {
+:	frc::Subsystem("ExampleSubsystem"),
+	_motor(nullptr), _shooterSensor(nullptr), _shooter(nullptr), _shooterRaised(false) {
 	_motor = RobotMap::winchMotor;
 	_shooterSensor = RobotMap::winchPot;
 	if (angleSensor) {
-		shooter = RobotMap::shooterWinch;
-		// shooter->SetSetpoint(3.3);
-		_shooterRaised = false;
-		// shooter->Enable();
+		_shooter = RobotMap::shooterWinch;
 	}
 	else {
 		_motor->SetControlMode(CANSpeedController::kPosition);
 		_motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
-		//_motor->SetSensorDirection(true);
 		_motor->SetP(0.8);
 		_motor->SetI(0.0);
 		_motor->SetD(0.05);
@@ -32,22 +29,42 @@ WinchSub::WinchSub()
 // ==========================================================================
 
 void WinchSub::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
 // ==========================================================================
 
-bool WinchSub::ShooterIsRaised() const {
-	return _shooterRaised;
+void WinchSub::DisablePositionControl() {
+	if (angleSensor) {
+		_shooter->Disable();
+	}
+	else {
+		_motor->SetControlMode(CANSpeedController::kPercentVbus);
+	}
 }
 
 // ==========================================================================
 
-void WinchSub::setPos(double pos) {
+bool WinchSub::OnTarget() const {
 	if (angleSensor) {
-		shooter->Enable();
-		shooter->SetSetpoint(pos);
+		return _shooter->OnTarget();
+	}
+	return false;
+}
+
+// ==========================================================================
+
+void WinchSub::ReportPosition() {
+	SmartDashboard::PutNumber("Winch Position", _motor->GetPosition());
+	SmartDashboard::PutNumber("Winch Angle", _shooterSensor->GetAverageVoltage());
+}
+
+// ==========================================================================
+
+void WinchSub::SetPosition(double pos) {
+	if (angleSensor) {
+		_shooter->Enable();
+		_shooter->SetSetpoint(pos);
 	}
 	else {
 		_motor->SetControlMode(CANSpeedController::kPosition);
@@ -64,45 +81,33 @@ void WinchSub::setPos(double pos) {
 
 // ==========================================================================
 
-void WinchSub::disablePositionControl() {
-	if (angleSensor) {
-		shooter->Disable();
-	}
-	else {
-		_motor->SetControlMode(CANSpeedController::kPercentVbus);
-	}
+bool WinchSub::ShooterIsRaised() const {
+	return _shooterRaised;
 }
 
 // ==========================================================================
 
-void WinchSub::readPos() {
-	SmartDashboard::PutNumber("Winch Position", _motor->GetPosition());
-	SmartDashboard::PutNumber("Winch Angle", _shooterSensor->GetAverageVoltage());
-}
-
-// ==========================================================================
-
-void WinchSub::reset() {
-	_motor->SetPosition(0.0);
-}
-
-// ==========================================================================
-
-void WinchSub::climb() {
+void WinchSub::Climb() {
 	_motor->SetControlMode(CANSpeedController::kPercentVbus);
 	_motor->Set(1);
 }
 
 // ==========================================================================
 
-void WinchSub::climbReverse() {
+void WinchSub::ClimbReverse() {
 	_motor->SetControlMode(CANSpeedController::kPercentVbus);
 	_motor->Set(-1);
 }
 
 // ==========================================================================
 
-void WinchSub::stopClimb() {
+void WinchSub::Reset() {
+	_motor->SetPosition(0.0);
+}
+
+// ==========================================================================
+
+void WinchSub::StopClimb() {
 	_motor->Set(0);
 }
 

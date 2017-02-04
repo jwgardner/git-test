@@ -12,23 +12,23 @@ public:
 
 	void InitDefaultCommand();
 
+	void DisablePositionControl();
+	bool OnTarget() const;
+	void ReportPosition();
+	void SetPosition(double pos);
 	bool ShooterIsRaised() const;
 
-	// TODO - Fix casing of method names
-	void setPos(double pos);
-	void readPos();
-	void disablePositionControl();
-	void reset();
-	void climb();
-	void climbReverse();
-	void stopClimb();
+	void Climb();
+	void ClimbReverse();
+	void Reset();
+	void StopClimb();
 
-	PIDController* shooter; // TODO - Make this private
 	const static bool angleSensor; // TODO - Make this private
 
 private:
 	CANTalon* _motor;
 	AnalogInput* _shooterSensor;
+	PIDController* _shooter;
 	bool _shooterRaised;
 };
 

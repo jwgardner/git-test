@@ -9,7 +9,7 @@ DisableWinchControl::DisableWinchControl() {
 // ==========================================================================
 
 void DisableWinchControl::Initialize() {
-	Robot::winchSub->disablePositionControl();
+	Robot::winchSub->DisablePositionControl();
 }
 
 // ==========================================================================

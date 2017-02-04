@@ -27,7 +27,7 @@ public:
 	Command* winchSet2;
 	Command* winchSet3;
 	Command* deFeed;
-	// Command* arcade;
+	//Command* arcade;
 	Command* climb;
 	Command* climbReverse;
 	Command* gyroCrab;
@@ -35,7 +35,7 @@ public:
 	Command* fieldCentric;
 	Command* lowShot;
 
-	Joystick *GetDriverJoystick() { return driverJoystick; }
+	Joystick* GetDriverJoystick() { return driverJoystick; }
 };
 
 // ==========================================================================
