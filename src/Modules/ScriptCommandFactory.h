@@ -10,6 +10,8 @@
 #include <string>
 #include <Commands/Command.h>
 
+// ==========================================================================
+
 class ScriptCommandFactory {
 public:
 	// Singleton

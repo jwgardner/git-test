@@ -7,7 +7,7 @@
 
 ScriptCamDrive::ScriptCamDrive(std::string name, double x, double y, double maxSpeed, double timeoutSeconds, int side)
 : frc::Command(name), _visionSink(), _visionSource(), _pid(nullptr),
-  		_x(x), _y(y), _maxSpeed(maxSpeed), _timeoutSeconds(timeoutSeconds), _side(side),
+		_x(x), _y(y), _maxSpeed(maxSpeed), _timeoutSeconds(timeoutSeconds), _side(side),
 		_counter(0), _angle(0), _p(0), _i(0), _d(0), _tol(0), _center(0), _returnQuick(false) {
 	char szParams[64];
 	sprintf(szParams, "(%f, %f, %f, %f, %i)", x, y, maxSpeed, timeoutSeconds, side);
@@ -76,18 +76,19 @@ bool ScriptCamDrive::IsFinished() {
 
 void ScriptCamDrive::End() {
 	LOG(GetName() + "::End");
-
-	Robot::driveTrain->Crab(0, 0, 0, false);
-	_pid->Disable();
-	Robot::driveTrain->disableSpeedControl();
-	_counter = 0;
+	_Cleanup();
 }
 
 // ==========================================================================
 
 void ScriptCamDrive::Interrupted() {
 	LOG(GetName() + "::Interrupted");
+	_Cleanup();
+}
 
+// ==========================================================================
+
+void ScriptCamDrive::_Cleanup() {
 	Robot::driveTrain->Crab(0, 0, 0, false);
 	_pid->Disable();
 	Robot::driveTrain->disableSpeedControl();

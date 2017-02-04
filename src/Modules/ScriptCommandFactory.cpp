@@ -22,8 +22,8 @@ ScriptCommandFactory::~ScriptCommandFactory() {
 // ==========================================================================
 
 ScriptCommandFactory& ScriptCommandFactory::GetInstance() {
-    static ScriptCommandFactory instance;
-    return instance;
+	static ScriptCommandFactory instance;
+	return instance;
 }
 
 // ==========================================================================

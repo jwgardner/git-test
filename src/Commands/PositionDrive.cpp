@@ -6,11 +6,11 @@
 
 PositionDrive::PositionDrive(int offset, int side)
 : frc::Command("PositionDrive"), _offset(offset), _side(side),
-      _timeoutSeconds(10),
-	  _counter(0), _waiting(0), _waitingCounter(0),
-	  _angle(0),
-	  _p(0), _i(0), _d(0), _tol(0),
-	  _center(0) {
+	_timeoutSeconds(10),
+	_counter(0), _waiting(0), _waitingCounter(0),
+	_angle(0),
+	_p(0), _i(0), _d(0), _tol(0),
+	_center(0) {
 	Requires(Robot::driveTrain);
 }
 
@@ -99,16 +99,20 @@ bool PositionDrive::IsFinished() {
 // ==========================================================================
 
 void PositionDrive::End() {
-	std::cout << GetName() << "::End" << std::endl;
-	Robot::driveTrain->Crab(0, 0, 0, false);
-	Robot::driveTrain->disableSpeedControl();
-	_counter = 0;
+	LOG(GetName() + "::End");
+	_Cleanup();
 }
 
 // ==========================================================================
 
 void PositionDrive::Interrupted() {
-	std::cout << GetName() << "::Interrupted" << std::endl;
+	LOG(GetName() + "::Interrupted");
+	_Cleanup();
+}
+
+// ==========================================================================
+
+void PositionDrive::_Cleanup() {
 	Robot::driveTrain->Crab(0, 0, 0, false);
 	Robot::driveTrain->disableSpeedControl();
 	_counter = 0;

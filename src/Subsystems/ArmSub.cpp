@@ -22,8 +22,7 @@ ArmSub::ArmSub()
 // ==========================================================================
 
 void ArmSub::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+	//SetDefaultCommand(new MySpecialCommand());
 }
 
 // ==========================================================================
@@ -74,7 +73,7 @@ void ArmSub::SetOffset(double offset) {
 // ==========================================================================
 
 void ArmSub::Stop() {
-  //_armMotor->Set(0);
+	//_armMotor->Set(0);
 }
 
 // ==========================================================================

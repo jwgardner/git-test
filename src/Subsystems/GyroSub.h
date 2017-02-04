@@ -12,23 +12,23 @@
 
 class GyroSub : public frc::Subsystem, public frc::PIDSource {
 public:
-    GyroSub();
+	GyroSub();
 
-    // Subsystem methods
-    virtual void InitDefaultCommand();
+	// Subsystem methods
+	virtual void InitDefaultCommand();
 
-    // PIDSource methods
-    virtual double PIDGet();
+	// PIDSource methods
+	virtual double PIDGet();
 
-    double GetHeading();
-    bool IsCalibrating();
-    void ResetGyro();
+	double GetHeading();
+	bool IsCalibrating();
+	void ResetGyro();
 
-    float GetDisplacementX();
-    float GetDisplacementY();
+	float GetDisplacementX();
+	float GetDisplacementY();
 
 private:
-    AHRS* theGyro();
+	AHRS* theGyro();
 };
 
 // ==========================================================================

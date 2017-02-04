@@ -7,8 +7,8 @@
 
 class ScriptCommand : public frc::CommandGroup {
 public:
-	ScriptCommand(const char *name);
-	ScriptCommand(const char *name, std::string commands);
+	ScriptCommand(std::string name);
+	ScriptCommand(std::string name, std::string script);
 
 	static void InitParameters();
 

@@ -29,6 +29,8 @@ private:
 	double _d;
 	double _tol;
 	double _center;
+
+	void _Cleanup();
 };
 
 // ==========================================================================

@@ -1,20 +1,20 @@
 #include <WPILib.h>
-#include <iostream>
-
+#include <string>
 #include "Commands/ScriptCommand.h"
 #include "Modules/CommandListParser.h"
+#include "Modules/Logger.h"
 
 // ==========================================================================
 
-ScriptCommand::ScriptCommand(const char *name)
+ScriptCommand::ScriptCommand(std::string name)
 : ScriptCommand(name, SmartDashboard::GetString("ScriptCommand", "")) {
 }
 
 // ==========================================================================
 
-ScriptCommand::ScriptCommand(const char *name, std::string script)
+ScriptCommand::ScriptCommand(std::string name, std::string script)
 : frc::CommandGroup(name) {
-	std::cout << "ScriptCommand:" << name << std::endl;
+	LOG(GetName() + "::ctor");
 	ParseCommands(script);
 }
 

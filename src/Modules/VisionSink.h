@@ -3,17 +3,21 @@
 #include <WPILib.h>
 #include <condition_variable>
 
-class VisionSink : public PIDOutput {
+// ==========================================================================
+
+class VisionSink : public frc::PIDOutput {
 public:
-  VisionSink();
-  virtual ~VisionSink();
+	VisionSink();
+	virtual ~VisionSink();
 
-  // PIDOutput methods
-  void PIDWrite(double output);
+	// PIDOutput methods
+	void PIDWrite(double output);
 
-  double GetValue();
+	double GetValue();
 
 private:
-  std::recursive_mutex _mutex;
-  double _value;
+	std::recursive_mutex _mutex;
+	double _value;
 };
+
+// ==========================================================================

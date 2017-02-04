@@ -31,8 +31,8 @@ private:
 	CANTalon* _leftRear;
 	CANTalon* _rightFront;
 	CANTalon* _rightRear;
-	SpeedController* _feeder;
-	AnalogInput* _feederSensor;
+	frc::SpeedController* _feeder;
+	frc::AnalogInput* _feederSensor;
 };
 
 // ==========================================================================

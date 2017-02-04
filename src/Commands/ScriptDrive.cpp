@@ -35,14 +35,19 @@ bool ScriptDrive::IsFinished() { return IsTimedOut(); }
 
 void ScriptDrive::End() {
 	LOG(GetName() + "::End");
-	Robot::driveTrain->Crab(0, 0, 0, false);
-	Robot::driveTrain->disableSpeedControl();
+	_Cleanup();
 }
 
 // ==========================================================================
 
 void ScriptDrive::Interrupted() {
 	LOG(GetName() + "::Interrupted");
+	_Cleanup();
+}
+
+// ==========================================================================
+
+void ScriptDrive::_Cleanup() {
 	Robot::driveTrain->Crab(0, 0, 0, false);
 	Robot::driveTrain->disableSpeedControl();
 }

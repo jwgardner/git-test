@@ -2,11 +2,15 @@
 
 #include <WPILib.h>
 
-class VisionSource : public PIDSource {
-public:
-  VisionSource();
-  virtual ~VisionSource();
+// ==========================================================================
 
-  // PIDSource methods
-  double PIDGet();
+class VisionSource : public frc::PIDSource {
+public:
+	VisionSource();
+	virtual ~VisionSource();
+
+	// PIDSource methods
+	double PIDGet();
 };
+
+// ==========================================================================

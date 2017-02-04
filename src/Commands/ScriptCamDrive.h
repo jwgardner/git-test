@@ -20,7 +20,7 @@ public:
 private:
 	VisionSink _visionSink;
 	VisionSource _visionSource;
-	PIDController* _pid;
+	frc::PIDController* _pid;
 	double _x;
 	double _y;
 	double _maxSpeed;
@@ -34,6 +34,8 @@ private:
 	double _tol;
 	double _center;
 	bool _returnQuick;
+
+	void _Cleanup();
 };
 
 // ==========================================================================

@@ -26,12 +26,13 @@ AnalogChannelVolt::~AnalogChannelVolt() {
 // ==========================================================================
 
 double AnalogChannelVolt::PIDGet() {
-  auto position = m_motor->GetPosition();
-  position -= trunc(position);
-  if (position < 0)
-    position++;
-  position *= EncoderConstants::FULL_TURN;
-  return position;
+	auto position = m_motor->GetPosition();
+	position -= trunc(position);
+	if (position < 0) {
+		position++;
+	}
+	position *= EncoderConstants::FULL_TURN;
+	return position;
 }
 
 // ==========================================================================

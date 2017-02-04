@@ -35,14 +35,19 @@ bool ScriptGyroDrive::IsFinished() { return IsTimedOut(); }
 
 void ScriptGyroDrive::End() {
 	LOG(GetName() + "::End");
-	Robot::driveTrain->Crab(0, 0, 0, false);
-	Robot::driveTrain->disableSpeedControl();
+	_Cleanup();
 }
 
 // ==========================================================================
 
 void ScriptGyroDrive::Interrupted() {
 	LOG(GetName() + "::Interrupted");
+	_Cleanup();
+}
+
+// ==========================================================================
+
+void ScriptGyroDrive::_Cleanup() {
 	Robot::driveTrain->Crab(0, 0, 0, false);
 	Robot::driveTrain->disableSpeedControl();
 }
